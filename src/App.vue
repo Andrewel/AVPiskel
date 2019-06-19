@@ -1,0 +1,22 @@
+<template>
+  <div id="app" class="content">
+    <router-view/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "App"
+};
+</script>
+
+<style>
+#app {
+  font-family: "Roboto";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0px 0px;
+}
+</style>
