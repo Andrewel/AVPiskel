@@ -1,45 +1,33 @@
 <template>
   <div class="login">
-    <img src="../assets/logo.png" width="100px" />
+    <img src="../assets/logo.png" width="100px">
     <h3>Piskel</h3>
-    <input
-      type="text"
-      v-model="email"
-      placeholder="Email address"
-      class="input"
-      required
-    />
-    <br />
-    <input
-      type="password"
-      v-model="password"
-      placeholder="Password"
-      class="input"
-      required
-    />
-    <br />
+    <input type="text" v-model="email" placeholder="Email address" class="input" required>
+    <br>
+    <input type="password" v-model="password" placeholder="Password" class="input" required>
+    <br>
     <button v-on:click="login" class="button">Enter</button>
-    <p>
-      or Sign In with Google <br />
+    <p>or Sign In with Google
+      <br>
       <button @click="socialLogin" class="social-button">
-        <img alt="Google Logo" src="../assets/google-logo.png" />
+        <img alt="Google Logo" src="../assets/google-logo.png">
       </button>
     </p>
     <p>
-      <router-link to="/signup"> New Here? Create a new account </router-link>
+      <router-link to="/signup">New Here? Create a new account</router-link>
     </p>
   </div>
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from 'firebase';
 
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {
-      email: "",
-      password: ""
+      email: '',
+      password: '',
     };
   },
   methods: {
@@ -48,7 +36,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          this.$router.replace("/home");
+          this.$router.replace('/home');
         })
         .catch(err => {
           alert(err.message);
@@ -60,13 +48,13 @@ export default {
         .auth()
         .signInWithPopup(provider)
         .then(result => {
-          this.$router.replace("/home");
+          this.$router.replace('/home');
         })
         .catch(err => {
-          alert("Oops. " + err.message);
+          alert('Oops. ' + err.message);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
