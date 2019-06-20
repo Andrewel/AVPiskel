@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import firebase from "firebase";
-import CanvasDraw from "../components/CanvasDraw.vue";
+import firebase from 'firebase';
+import CanvasDraw from '../components/CanvasDraw.vue';
 
 export default {
-  name: "home",
+  name: 'home',
   components: {
-    CanvasDraw
+    CanvasDraw,
   },
   data() {
     return {};
@@ -28,22 +28,22 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace("login");
+          this.$router.replace('login');
         });
     },
     profile() {
-      this.$router.replace("profile");
+      this.$router.replace('profile');
     },
-     likes() {
-      this.$router.replace("likes");
-    }
-  }
+    likes() {
+      this.$router.replace('likes');
+    },
+  },
 };
 </script>
 
 <style scoped>
 .home {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;

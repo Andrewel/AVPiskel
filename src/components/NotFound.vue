@@ -1,6 +1,6 @@
 <template>
   <div class="not-found">
-    <img src="../assets/logo.png" width="300px" />
+    <img src="../assets/logo.png" width="300px">
     <h3>Wuh!?</h3>
     <p>Looks like you are lost.</p>
     <button v-on:click="notFound" class="button">Go Back To Login</button>
@@ -9,15 +9,15 @@
 
 <script>
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {};
   },
   methods: {
     notFound() {
-      this.$router.replace("/home");
-    }
-  }
+      this.$router.replace('/home');
+    },
+  },
 };
 </script>
 
