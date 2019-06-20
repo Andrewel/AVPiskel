@@ -9,15 +9,15 @@
 
 <script>
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {};
   },
   methods: {
     notFound() {
-      this.$router.replace("/home");
-    }
-  }
+      this.$router.replace('/home');
+    },
+  },
 };
 </script>
 

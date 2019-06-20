@@ -102,39 +102,39 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/firestore";
-import { firestorage } from "../main";
-import { db } from "../main";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import { firestorage } from '../main';
+import { db } from '../main';
 export default {
-  name: "profile",
+  name: 'profile',
   data() {
     return {
       drawer: null,
       snackbar: false,
-      mode: "",
+      mode: '',
       timeout: 5000,
-      text: "Success",
+      text: 'Success',
       progressUpload: 0,
-      fileName: "",
-      uploadTask: "",
+      fileName: '',
+      uploadTask: '',
       uploading: false,
       uploadEnd: false,
-      downloadURL: "",
+      downloadURL: '',
       Users: [],
-      name: "",
-      image: "",
-      country: "",
-      age: "",
-      uid: firebase.auth().currentUser.uid
+      name: '',
+      image: '',
+      country: '',
+      age: '',
+      uid: firebase.auth().currentUser.uid,
     };
   },
   props: {
-    source: String
+    source: String,
   },
   firestore() {
     return {
-      Users: db.collection("users").where("uid", "==", this.uid)
+      Users: db.collection('users').where('uid', '==', this.uid),
     };
   },
   methods: {
@@ -153,38 +153,38 @@ export default {
         image: downloadURL,
         createdAt: createdAt,
         key: key,
-        uid: this.uid
+        uid: this.uid,
       };
-      this.name = "";
-      this.age = "";
-      this.country = "";
+      this.name = '';
+      this.age = '';
+      this.country = '';
       let data = {
-        key: key
+        key: key,
       };
-      db.collection("key")
-        .doc("key")
+      db.collection('key')
+        .doc('key')
         .set(data);
-      db.collection("users")
+      db.collection('users')
         .doc(this.uid)
         .set(user);
-      db.collection("users")
+      db.collection('users')
         .doc(this.uid)
-        .collection("MyLikes")
+        .collection('MyLikes')
         .doc(this.uid)
         .set(user);
-      db.collection("users")
+      db.collection('users')
         .doc(this.uid)
-        .collection("MyLikes")
+        .collection('MyLikes')
         .doc(this.uid)
         .set(
           {
-            like: false
+            like: false,
           },
-          { merge: true }
+          { merge: true },
         );
     },
     deleteComic(id) {
-      db.collection("users")
+      db.collection('users')
         .doc(id)
         .delete();
     },
@@ -193,11 +193,11 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.replace("/login");
+          this.$router.replace('/login');
         });
     },
     home() {
-      this.$router.replace("/home");
+      this.$router.replace('/home');
     },
     selectFile() {
       this.$refs.uploadInput.click();
@@ -211,32 +211,32 @@ export default {
     upload(file) {
       this.fileName = this.uid;
       this.uploading = true;
-      this.uploadTask = firestorage.ref("images/" + this.uid).put(file);
+      this.uploadTask = firestorage.ref('images/' + this.uid).put(file);
     },
     deleteImage() {
       firestorage
-        .ref("images/" + this.fileName)
+        .ref('images/' + this.fileName)
         .delete()
         .then(() => {
           this.uploading = false;
           this.uploadEnd = false;
-          this.downloadURL = "";
+          this.downloadURL = '';
         })
         .catch(error => {
           console.error(`file delete error occured: ${error}`);
         });
     },
     cv() {
-      this.$router.replace("cv");
-    }
+      this.$router.replace('cv');
+    },
   },
   watch: {
     uploadTask() {
       this.uploadTask.on(
-        "state_changed",
+        'state_changed',
         sp => {
           this.progressUpload = Math.floor(
-            (sp.bytesTransferred / sp.totalBytes) * 100
+            (sp.bytesTransferred / sp.totalBytes) * 100,
           );
         },
         null,
@@ -244,13 +244,13 @@ export default {
           this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
             this.uploadEnd = true;
             this.downloadURL = downloadURL;
-            this.$emit("downloadURL", downloadURL);
+            this.$emit('downloadURL', downloadURL);
             this.snackbar = true;
           });
-        }
+        },
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -264,7 +264,7 @@ export default {
 .progress-bar {
   margin: 10px 0;
 }
-input[type="file"] {
+input[type='file'] {
   display: none;
   //visibility: hidden;
   //position: absolute;

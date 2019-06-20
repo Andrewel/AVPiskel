@@ -133,7 +133,7 @@
 
 <script>
 export default {
-  name: "cv"
+  name: 'cv',
 };
 //import { getVueOptions } from './options';
 
@@ -144,7 +144,7 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 * {
   margin: 0;
@@ -156,7 +156,7 @@ export default {
   background: whitesmoke;
   margin: 2% auto;
   padding: 0px;
-  font-family: "Roboto";
+  font-family: 'Roboto';
 }
 
 a {
@@ -243,7 +243,7 @@ h3 {
 
 /* There is a bar just before each category */
 h3:before {
-  content: "";
+  content: '';
   display: inline-block;
   margin-right: 1%;
   width: 16vw;
@@ -308,11 +308,11 @@ a .fab {
 .div-skills .div-column ul,
 ul.job-description {
   list-style-type: none;
-   margin-bottom: 1vw;
+  margin-bottom: 1vw;
 }
 
 .div-skills .div-column ul > li:before {
-  content: "-";
+  content: '-';
   padding-right: 0.5em;
   color: rgb(0, 0, 0);
 }
@@ -331,7 +331,7 @@ ul.job-description {
 }
 
 ul.job-description li:before {
-  content: "+";
+  content: '+';
   padding-right: 0.5em;
   color: rgb(0, 0, 0);
 }

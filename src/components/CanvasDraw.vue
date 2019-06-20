@@ -70,7 +70,9 @@ export default {
   },
   methods: {
     setCanvas() {
-      this.$refs.canvasWrapper.style.gridTemplateColumns = `${this.width}px 30px`;
+      this.$refs.canvasWrapper.style.gridTemplateColumns = `${
+        this.width
+      }px 30px`;
       this.$refs.canvasWrapper.style.width = `${this.width + 30}px`;
       this.$refs.canvasWrapper.style.height = `${this.height}px`;
 
@@ -83,13 +85,19 @@ export default {
       this.cursorContext = this.$refs.cursor.getContext('2d');
     },
     bindEvents() {
-      this.$refs.canvas.addEventListener('mousedown', (event) => {
+      this.$refs.canvas.addEventListener('mousedown', event => {
         this.isDrawing = true;
         [this.lastX, this.lastY] = [event.offsetX, event.offsetY];
       });
       this.$refs.canvas.addEventListener('mousemove', this.draw);
-      this.$refs.canvas.addEventListener('mouseup', () => this.isDrawing = false);
-      this.$refs.canvas.addEventListener('mouseout', () => this.isDrawing = false);
+      this.$refs.canvas.addEventListener(
+        'mouseup',
+        () => (this.isDrawing = false),
+      );
+      this.$refs.canvas.addEventListener(
+        'mouseout',
+        () => (this.isDrawing = false),
+      );
     },
     changeTool(tool) {
       this.selectedToolIdx = tool;
@@ -114,9 +122,13 @@ export default {
     drawCursor(event) {
       this.cursorContext.beginPath();
       this.cursorContext.ellipse(
-        event.offsetX, event.offsetY,
-        this.brushSize, this.brushSize,
-        Math.PI / 4, 0, 2 * Math.PI
+        event.offsetX,
+        event.offsetY,
+        this.brushSize,
+        this.brushSize,
+        Math.PI / 4,
+        0,
+        2 * Math.PI,
       );
       this.cursorContext.stroke();
       setTimeout(() => {
@@ -125,7 +137,7 @@ export default {
     },
     showColorPalette() {
       const colorPalette = document.createElement('input');
-      colorPalette.addEventListener('change', (event) => {
+      colorPalette.addEventListener('change', event => {
         this.tools[0].color = event.target.value;
       });
       colorPalette.type = 'color';
@@ -135,17 +147,17 @@ export default {
     download() {
       const link = document.createElement('a');
       link.download = `${this.outputName}.png`;
-      link.href = this.$refs.canvas.toDataURL()
+      link.href = this.$refs.canvas.toDataURL();
       link.click();
     },
     downloadFirestore() {
       const link = document.createElement('a');
       link.download = `${this.outputName}.png`;
-      link.href = this.$refs.canvas.toDataURL()
+      link.href = this.$refs.canvas.toDataURL();
       link.click();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style scoped>
 .canvas-wrapper {
@@ -167,7 +179,7 @@ export default {
   margin: 0;
   padding: 0;
 }
-.tools li{
+.tools li {
   padding: 4px;
   background-color: #c8c8c8;
   border-left: 1px solid #abaaaa;

@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: "App"
+  name: 'App',
 };
 </script>
 
 <style>
 #app {
-  font-family: "Roboto";
+  font-family: 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
