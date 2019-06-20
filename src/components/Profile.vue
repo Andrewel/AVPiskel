@@ -55,11 +55,8 @@
       <p>{{ User.name }}</p>
     </article>
     <form @submit="addComic(name, age, country, downloadURL);">
-      <v-btn
-        class="upload_button"
-        @click.native="selectFile"
-        v-if="!uploadEnd && !uploading"
-      >Upload a cover image
+      <v-btn class="upload_button" @click.native="selectFile" v-if="!uploadEnd && !uploading">
+        Upload a cover image
         <v-icon right aria-hidden="true">add_a_photo</v-icon>
       </v-btn>
       <input

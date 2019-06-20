@@ -1,20 +1,5 @@
 <template>
   <v-card flat tile>
-    <!--
-      <article class="covers" v-for="(user, idx) in users" :key="idx">
-        <div>
-          <img
-            style="margin: 10px"
-            :src="user.image"
-            height="291px"
-            width="192px"
-          />
-          <p>{{ user.name }}</p>
-          <hr />
-          <button class="button" @click="deleteComic(user.id);">Delete</button>
-        </div>
-      </article>
-    -->
     <v-toolbar color="pink" dark>
       <v-toolbar-side-icon></v-toolbar-side-icon>
 
