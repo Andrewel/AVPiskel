@@ -15,25 +15,14 @@
       </v-btn>
     </v-toolbar>
 
-    <v-container v-for="type in types" :key="type" fluid grid-list-md grey lighten-4>
+    <v-container v-for="type of types" :key="type" fluid grid-list-md grey lighten-4>
       <v-subheader>{{ type }}</v-subheader>
 
       <v-layout row wrap v-if="type == 'My Likes'">
-        <v-spacer></v-spacer>
-        <v-flex v-for="user in users" :key="user.key" xs12 sm6 md4>
+        <!--<v-spacer></v-spacer>-->
+        <v-flex v-for="user of MyLikes" :key="user.key" xs12 sm6 md4>
           <v-card>
-            <!--
-              <v-img
-                :src="`https://picsum.photos/200/300?image=${getImage()}`"
-                height="300px"
-              >
-                <span
-                  class="headline white--text pl-3 pt-3"
-                  v-text="card.title"
-                ></span>
-              </v-img>
-            -->
-            <v-img :src="user.image" height="200px">
+            <v-img :src="user.image" height="400px">
               <span class="headline white--text pl-3 pt-3" v-text="user.name"></span>
             </v-img>
 
@@ -58,7 +47,7 @@
         <v-spacer></v-spacer>
         <v-flex v-for="MeLike in MeLikes" :key="MeLike.key" xs12 sm6 md4>
           <v-card>
-            <v-img :src="MeLike.image" height="200px">
+            <v-img :src="MeLike.image" height="400px">
               <span class="headline white--text pl-3 pt-3" v-text="MeLike.name"></span>
             </v-img>
 
@@ -85,7 +74,7 @@
         <v-spacer></v-spacer>
         <v-flex v-for="match in matches" :key="match.key" xs12 sm6 md4>
           <v-card>
-            <v-img :src="match.image" height="200px">
+            <v-img :src="match.image" height="400px">
               <span class="headline white--text pl-3 pt-3" v-text="match.name"></span>
             </v-img>
 
@@ -119,7 +108,7 @@ export default {
   data() {
     return {
       uid: firebase.auth().currentUser.uid,
-      users: [],
+      MyLikes: [],
       matches: [],
       MeLikes: [],
       types: ['My Likes', 'Me Likes', 'Matches'],
@@ -141,11 +130,11 @@ export default {
   },
   firestore() {
     return {
-      users: db
+      MyLikes: db
         .collection('users')
         .doc(this.uid)
-        .collection('MyLikes')
-        .where('like', '==', true),
+        .collection('MyGallery')
+        .orderBy('createAt', 'desc'),
       MeLikes: db
         .collection('users')
         .doc(this.uid)
@@ -160,16 +149,10 @@ export default {
   },
   methods: {
     search() {
-      this.$router.replace('/likes2');
+      this.$router.replace('/profile');
     },
     home() {
       this.$router.replace('/home');
-    },
-    getImage() {
-      const min = 550;
-      const max = 560;
-
-      return Math.floor((Math.random() * (max - (min + 1))) + min);
     },
   },
 };

@@ -36,12 +36,19 @@
     </v-navigation-drawer>
     <v-toolbar color="pink" dark>
       <v-toolbar-side-icon @click.stop="drawer = !drawer;"></v-toolbar-side-icon>
-
       <v-toolbar-title>Profile</v-toolbar-title>
-
       <v-spacer></v-spacer>
+      <v-list-tile avatar>
+            <v-list-tile-avatar>
+              <img :src="image" alt="avatar">
+            </v-list-tile-avatar>
 
+            <v-list-tile-content>
+              <v-list-tile-title>{{ name }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
       <v-btn icon v-on:click="home">
+
         <v-icon>home</v-icon>
       </v-btn>
       <v-btn icon v-on:click="logout">
@@ -52,14 +59,13 @@
       <v-avatar class="avatar" :tile="false" size="200px" color="grey lighten-4">
         <img :src="User.image" alt="avatar">
       </v-avatar>
-      <p>{{ User.name }}</p>
+      <p>
+        <strong>{{ User.name}}-{{ User.age}}-{{ User.country}}</strong>
+      </p>
     </article>
     <form @submit="addComic(name, age, country, downloadURL);">
-      <v-btn
-        class="upload_button"
-        @click.native="selectFile"
-        v-if="!uploadEnd && !uploading"
-      >Upload a cover image
+      <v-btn class="upload_button" @click.native="selectFile" v-if="!uploadEnd && !uploading">
+        Upload a cover image
         <v-icon right aria-hidden="true">add_a_photo</v-icon>
       </v-btn>
       <input
@@ -121,9 +127,10 @@ export default {
       uploading: false,
       uploadEnd: false,
       downloadURL: '',
-      Users: [],
-      name: '',
-      image: '',
+      Users: [
+      ],
+      name: firebase.auth().currentUser.displayName,
+      image: firebase.auth().currentUser.photoURL,
       country: '',
       age: '',
       uid: firebase.auth().currentUser.uid,
@@ -140,8 +147,6 @@ export default {
   methods: {
     addComic(name, age, country, downloadURL) {
       const createdAt = new Date();
-      // let key = this.key.key;
-      // let uid = firebase.auth().currentUser.uid;
       let key = 0;
       for (let i = 0; i < this.uid.length; i += 1) {
         key += this.uid.charCodeAt(i);
@@ -197,6 +202,8 @@ export default {
         });
     },
     home() {
+      // eslint-disable-next-line no-console
+      console.log(firebase.auth().currentUser);
       this.$router.replace('/home');
     },
     selectFile() {
@@ -255,7 +262,7 @@ export default {
 
 <style scoped>
 .avatar {
-  margin: 5%;
+  margin: 2%;
 }
 .upload_button {
   text-align: center;
@@ -268,7 +275,7 @@ input[type='file'] {
 }
 input {
   align-self: center;
-  margin: 2% 0;
+  margin: 1% 0;
   width: auto;
   padding: 15px;
 }

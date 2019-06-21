@@ -22,6 +22,8 @@
 
 <script>
 import firebase from 'firebase';
+import 'firebase/firestore';
+import { db } from '../main';
 
 export default {
   name: 'login',
@@ -49,6 +51,27 @@ export default {
         .signInWithPopup(provider)
         // eslint-disable-next-line no-unused-vars
         .then((result) => {
+          const createdAt = new Date();
+          let key = 0;
+          for (let i = 0; i < result.user.uid.length; i += 1) {
+            key += result.user.uid.charCodeAt(i);
+          }
+          const user = {
+            name: result.user.displayName,
+            image: result.user.photoURL,
+            createdAt,
+            key,
+            uid: result.user.uid,
+          };
+          const data = {
+            key,
+          };
+          db.collection('key')
+            .doc('key')
+            .set(data);
+          db.collection('users')
+            .doc(result.user.uid)
+            .set(user);
           this.$router.replace('/home');
         })
         .catch((err) => {

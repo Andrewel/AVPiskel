@@ -21,13 +21,19 @@
       <li id="tool-download-firestore" @click="downloadFirestore()">
         <i class="fas fa-download tool download-icon" id="downloadFirestore"></i>
       </li>
+      <FirebaseStore />
     </ul>
   </div>
 </template>
 
 <script>
+import FirebaseStore from '../components/FirebaseStore';
+
 export default {
   name: 'CanvasDraw',
+  components: {
+    FirebaseStore,
+  },
   props: {
     brushSize: {
       type: Number,
