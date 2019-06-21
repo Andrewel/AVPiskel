@@ -1,3 +1,4 @@
+
 <template>
   <div class="canvas-wrapper" ref="canvasWrapper">
     <div class="draw-area">
@@ -85,17 +86,19 @@ export default {
       this.cursorContext = this.$refs.cursor.getContext('2d');
     },
     bindEvents() {
-      this.$refs.canvas.addEventListener('mousedown', event => {
+      this.$refs.canvas.addEventListener('mousedown', (event) => {
         this.isDrawing = true;
         [this.lastX, this.lastY] = [event.offsetX, event.offsetY];
       });
       this.$refs.canvas.addEventListener('mousemove', this.draw);
       this.$refs.canvas.addEventListener(
         'mouseup',
+        // eslint-disable-next-line no-return-assign
         () => (this.isDrawing = false),
       );
       this.$refs.canvas.addEventListener(
         'mouseout',
+        // eslint-disable-next-line no-return-assign
         () => (this.isDrawing = false),
       );
     },
@@ -137,7 +140,7 @@ export default {
     },
     showColorPalette() {
       const colorPalette = document.createElement('input');
-      colorPalette.addEventListener('change', event => {
+      colorPalette.addEventListener('change', (event) => {
         this.tools[0].color = event.target.value;
       });
       colorPalette.type = 'color';

@@ -12,7 +12,7 @@
 
 <script>
 import firebase from 'firebase';
-import CanvasDraw from '../components/CanvasDraw.vue';
+import CanvasDraw from '../components/CanvasDraw';
 
 export default {
   name: 'home',

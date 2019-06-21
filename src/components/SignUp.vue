@@ -1,6 +1,6 @@
 <template>
   <div class="sign-up">
-    <img src="../assets/logo.png" width="300px">
+    <img src="../assets/edit.svg" width="300px">
     <h3>Create a new account</h3>
     <input v-model="email" type="text" class="input" placeholder="Email" required>
     <br>
@@ -15,6 +15,7 @@
 
 <script>
 import firebase from 'firebase';
+
 export default {
   name: 'signup',
   data() {
@@ -28,12 +29,11 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
-        .then(user => {
+        // eslint-disable-next-line no-unused-vars
+        .then((user) => {
           this.$router.replace('/login');
         })
-        .catch(err => {
-          alert(err.message);
-        });
+        .catch(err => err);
     },
   },
 };

@@ -135,12 +135,12 @@
 export default {
   name: 'cv',
 };
-//import { getVueOptions } from './options';
+// import { getVueOptions } from './options';
 
-//const name = 'creative';
+// const name = 'creative';
 
-//export default Vue.component(name, getVueOptions(name));
-//export default Vue.component(name);
+// export default Vue.component(name, getVueOptions(name));
+// export default Vue.component(name);
 </script>
 
 <style scoped>

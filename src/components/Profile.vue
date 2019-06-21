@@ -104,8 +104,8 @@
 <script>
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { firestorage } from '../main';
-import { db } from '../main';
+import { firestorage, db } from '../main';
+
 export default {
   name: 'profile',
   data() {
@@ -140,26 +140,26 @@ export default {
   methods: {
     addComic(name, age, country, downloadURL) {
       const createdAt = new Date();
-      //let key = this.key.key;
-      //let uid = firebase.auth().currentUser.uid;
+      // let key = this.key.key;
+      // let uid = firebase.auth().currentUser.uid;
       let key = 0;
-      for (var i = 0; i < this.uid.length; i++) {
-        key = key + this.uid.charCodeAt(i);
+      for (let i = 0; i < this.uid.length; i += 1) {
+        key += this.uid.charCodeAt(i);
       }
-      let user = {
-        name: name,
-        age: age,
-        country: country,
+      const user = {
+        name,
+        age,
+        country,
         image: downloadURL,
-        createdAt: createdAt,
-        key: key,
+        createdAt,
+        key,
         uid: this.uid,
       };
       this.name = '';
       this.age = '';
       this.country = '';
-      let data = {
-        key: key,
+      const data = {
+        key,
       };
       db.collection('key')
         .doc('key')
@@ -203,28 +203,27 @@ export default {
       this.$refs.uploadInput.click();
     },
     detectFiles(e) {
-      let fileList = e.target.files || e.dataTransfer.files;
-      Array.from(Array(fileList.length).keys()).map(x => {
+      const fileList = e.target.files || e.dataTransfer.files;
+      // eslint-disable-next-line array-callback-return
+      Array.from(Array(fileList.length).keys()).map((x) => {
         this.upload(fileList[x]);
       });
     },
     upload(file) {
       this.fileName = this.uid;
       this.uploading = true;
-      this.uploadTask = firestorage.ref('images/' + this.uid).put(file);
+      this.uploadTask = firestorage.ref(`images/${this.uid}`).put(file);
     },
     deleteImage() {
       firestorage
-        .ref('images/' + this.fileName)
+        .ref(`images/${this.fileName}`)
         .delete()
         .then(() => {
           this.uploading = false;
           this.uploadEnd = false;
           this.downloadURL = '';
         })
-        .catch(error => {
-          console.error(`file delete error occured: ${error}`);
-        });
+        .catch(error => error);
     },
     cv() {
       this.$router.replace('cv');
@@ -234,14 +233,14 @@ export default {
     uploadTask() {
       this.uploadTask.on(
         'state_changed',
-        sp => {
+        (sp) => {
           this.progressUpload = Math.floor(
             (sp.bytesTransferred / sp.totalBytes) * 100,
           );
         },
         null,
         () => {
-          this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+          this.uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             this.uploadEnd = true;
             this.downloadURL = downloadURL;
             this.$emit('downloadURL', downloadURL);
@@ -266,10 +265,6 @@ export default {
 }
 input[type='file'] {
   display: none;
-  //visibility: hidden;
-  //position: absolute;
-  //left: 10%;
-  //clip: rect(0, 0, 0, 0);
 }
 input {
   align-self: center;

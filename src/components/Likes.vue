@@ -113,6 +113,7 @@
 <script>
 import firebase from 'firebase/app';
 import { db } from '../main';
+
 export default {
   name: 'likes',
   data() {
@@ -168,7 +169,7 @@ export default {
       const min = 550;
       const max = 560;
 
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+      return Math.floor((Math.random() * (max - (min + 1))) + min);
     },
   },
 };

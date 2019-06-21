@@ -1,6 +1,7 @@
+
 <template>
   <div class="login">
-    <img src="../assets/logo.png" width="100px">
+    <img src="../assets/edit.svg" width="100px">
     <h3>Piskel</h3>
     <input type="text" v-model="email" placeholder="Email address" class="input" required>
     <br>
@@ -10,7 +11,7 @@
     <p>or Sign In with Google
       <br>
       <button @click="socialLogin" class="social-button">
-        <img alt="Google Logo" src="../assets/google-logo.png">
+        <img alt="Google Logo" src="../assets/google-logo.svg">
       </button>
     </p>
     <p>
@@ -35,23 +36,24 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
-        .then(user => {
+        // eslint-disable-next-line no-unused-vars
+        .then((user) => {
           this.$router.replace('/home');
         })
-        .catch(err => {
-          alert(err.message);
-        });
+        .catch(err => err);
     },
     socialLogin() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(result => {
+        // eslint-disable-next-line no-unused-vars
+        .then((result) => {
           this.$router.replace('/home');
         })
-        .catch(err => {
-          alert('Oops. ' + err.message);
+        .catch((err) => {
+          // eslint-disable-next-line no-alert
+          alert(`Oops. ${err.message}`);
         });
     },
   },
