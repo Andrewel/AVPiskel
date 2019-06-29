@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for projectP/src/components/tools/CircleTool.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\..\index.html">All files</a> / <a href="index.html">projectP/src/components/tools</a> CircleTool.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/33</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;li id="tool-circle" @click="CircleTool()"&gt;
+    &lt;i class="far fa-circle tool circle-icon" id="circle"&gt;&lt;/i&gt;
+  &lt;/li&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+/* eslint-disable */
+export default {
+  name: 'CircleTool',
+  props: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+<span class="fstat-no" title="function not covered" >  data() {</span>
+<span class="cstat-no" title="statement not covered" >    return {};</span>
+  },
+  methods: {
+<span class="fstat-no" title="function not covered" >    CircleTool() {</span>
+      // Canvas
+<span class="cstat-no" title="statement not covered" >      const canvas = document.getElementById('canvas');</span>
+<span class="cstat-no" title="statement not covered" >      const ctx = canvas.getContext('2d');</span>
+      // Variables
+<span class="cstat-no" title="statement not covered" >      const canvasx = $(canvas).offset().left;</span>
+<span class="cstat-no" title="statement not covered" >      const canvasy = $(canvas).offset().top;</span>
+<span class="cstat-no" title="statement not covered" >      let last_mousex = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let last_mousey = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let mousex = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let mousey = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let mousedown = false;</span>
+&nbsp;
+      // Mousedown
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      $(canvas).on('mousedown', e =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        last_mousex = e.clientX - canvasx;</span>
+<span class="cstat-no" title="statement not covered" >        last_mousey = e.clientY - canvasy;</span>
+<span class="cstat-no" title="statement not covered" >        mousedown = true;</span>
+      });
+&nbsp;
+      // Mouseup
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      $(canvas).on('mouseup', e =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        mousedown = false;</span>
+      });
+&nbsp;
+      // Mousemove
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      $(canvas).on('mousemove', e =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        mousex = e.clientX - canvasx;</span>
+<span class="cstat-no" title="statement not covered" >        mousey = e.clientY - canvasy;</span>
+<span class="cstat-no" title="statement not covered" >        if (mousedown) {</span>
+<span class="cstat-no" title="statement not covered" >          ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas</span>
+          // Save
+<span class="cstat-no" title="statement not covered" >          ctx.save();</span>
+<span class="cstat-no" title="statement not covered" >          ctx.beginPath();</span>
+          // Dynamic scaling
+<span class="cstat-no" title="statement not covered" >          const scalex = 1 * ((mousex - last_mousex) / 2);</span>
+<span class="cstat-no" title="statement not covered" >          const scaley = 1 * ((mousey - last_mousey) / 2);</span>
+<span class="cstat-no" title="statement not covered" >          ctx.scale(scalex, scaley);</span>
+          // Create ellipse
+<span class="cstat-no" title="statement not covered" >          const centerx = last_mousex / scalex + 1;</span>
+<span class="cstat-no" title="statement not covered" >          const centery = last_mousey / scaley + 1;</span>
+<span class="cstat-no" title="statement not covered" >          ctx.arc(centerx, centery, 1, 0, 2 * Math.PI);</span>
+          // Restore and draw
+<span class="cstat-no" title="statement not covered" >          ctx.restore();</span>
+<span class="cstat-no" title="statement not covered" >          ctx.strokeStyle = 'black';</span>
+<span class="cstat-no" title="statement not covered" >          ctx.lineWidth = 5;</span>
+<span class="cstat-no" title="statement not covered" >          ctx.stroke();</span>
+        }
+      });
+    },
+  },
+};
+&lt;/script&gt;
+&nbsp;
+&lt;style scoped&gt;
+.tool {
+  margin: 2px 2px;
+  padding: 10px 5px;
+  height: 4vw;
+  width: 4vw;
+  background-color: grey;
+  box-shadow: 0px 0px 0px 0px rgba(255, 252, 80, 1);
+  font-size: 2vw;
+  color: white;
+}
+&nbsp;
+.tool:hover {
+  background-color: black;
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jun 29 2019 11:40:37 GMT+0300 (Moscow Standard Time)
+</div>
+</div>
+<script src="..\..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\..\sorter.js"></script>
+</body>
+</html>

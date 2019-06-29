@@ -60,7 +60,7 @@
         <img :src="User.image" alt="avatar">
       </v-avatar>
       <p>
-        <strong>{{ User.name}}-{{ User.age}}-{{ User.country}}</strong>
+        <strong>{{ User.name}} {{ User.age}} {{ User.country}}</strong>
       </p>
     </article>
     <form @submit="addComic(name, age, country, downloadURL);">

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for projectP/src/components/tools/StrokeLine.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\..\index.html">All files</a> / <a href="index.html">projectP/src/components/tools</a> StrokeLine.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/56</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;li id="tool-pencil-ruler" @click="StrokeLine()"&gt;
+    &lt;i class="fas fa-pencil-ruler tool pencil-ruler-icon" id="pencil-ruler"&gt;&lt;/i&gt;
+  &lt;/li&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+/* eslint-disable */
+export default {
+  name: 'StrokeLine',
+  props: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+<span class="fstat-no" title="function not covered" >  data() {</span>
+<span class="cstat-no" title="statement not covered" >    return {};</span>
+  },
+  methods: {
+<span class="fstat-no" title="function not covered" >    StrokeLine() {</span>
+<span class="cstat-no" title="statement not covered" >      const canvasWidth = 700;</span>
+<span class="cstat-no" title="statement not covered" >      const canvasHeight = 700;</span>
+<span class="cstat-no" title="statement not covered" >      let canvas = null;</span>
+<span class="cstat-no" title="statement not covered" >      let bounds = null;</span>
+<span class="cstat-no" title="statement not covered" >      let ctx = null;</span>
+<span class="cstat-no" title="statement not covered" >      let hasLoaded = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      let startX = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let startY = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let mouseX = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let mouseY = 0;</span>
+<span class="cstat-no" title="statement not covered" >      let isDrawing = false;</span>
+<span class="cstat-no" title="statement not covered" >      const existingLines = [];</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function draw() {</span>
+        // ctx.fillStyle = '#333333';
+        // ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        clearCanvas();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        ctx.strokeStyle = 'black';</span>
+<span class="cstat-no" title="statement not covered" >        ctx.lineWidth = 2;</span>
+<span class="cstat-no" title="statement not covered" >        ctx.beginPath();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; existingLines.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >          const line = existingLines[i];</span>
+<span class="cstat-no" title="statement not covered" >          ctx.moveTo(line.startX, line.startY);</span>
+<span class="cstat-no" title="statement not covered" >          ctx.lineTo(line.endX, line.endY);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        ctx.stroke();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (isDrawing) {</span>
+<span class="cstat-no" title="statement not covered" >          ctx.strokeStyle = 'darkred';</span>
+<span class="cstat-no" title="statement not covered" >          ctx.lineWidth = 3;</span>
+<span class="cstat-no" title="statement not covered" >          ctx.beginPath();</span>
+<span class="cstat-no" title="statement not covered" >          ctx.moveTo(startX, startY);</span>
+<span class="cstat-no" title="statement not covered" >          ctx.lineTo(mouseX, mouseY);</span>
+<span class="cstat-no" title="statement not covered" >          ctx.stroke();</span>
+        }
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function clearCanvas() {</span>
+<span class="cstat-no" title="statement not covered" >        ctx.clearRect(0, 0, canvasWidth, canvasHeight);</span>
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function onmousedown(e) {</span>
+<span class="cstat-no" title="statement not covered" >        if (hasLoaded &amp;&amp; e.button === 0) {</span>
+<span class="cstat-no" title="statement not covered" >          if (!isDrawing) {</span>
+<span class="cstat-no" title="statement not covered" >            startX = e.clientX - bounds.left;</span>
+<span class="cstat-no" title="statement not covered" >            startY = e.clientY - bounds.top;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            isDrawing = true;</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          draw();</span>
+        }
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function onmouseup(e) {</span>
+<span class="cstat-no" title="statement not covered" >        if (hasLoaded &amp;&amp; e.button === 0) {</span>
+<span class="cstat-no" title="statement not covered" >          if (isDrawing) {</span>
+<span class="cstat-no" title="statement not covered" >            existingLines.push({</span>
+              startX,
+              startY,
+              endX: mouseX,
+              endY: mouseY,
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            isDrawing = false;</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          draw();</span>
+        }
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function onmousemove(e) {</span>
+<span class="cstat-no" title="statement not covered" >        if (hasLoaded) {</span>
+<span class="cstat-no" title="statement not covered" >          mouseX = e.clientX - bounds.left;</span>
+<span class="cstat-no" title="statement not covered" >          mouseY = e.clientY - bounds.top;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (isDrawing) {</span>
+<span class="cstat-no" title="statement not covered" >            draw();</span>
+          }
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      canvas = document.getElementById('canvas');</span>
+<span class="cstat-no" title="statement not covered" >      canvas.width = canvasWidth;</span>
+<span class="cstat-no" title="statement not covered" >      canvas.height = canvasHeight;</span>
+<span class="cstat-no" title="statement not covered" >      canvas.onmousedown = onmousedown;</span>
+<span class="cstat-no" title="statement not covered" >      canvas.onmouseup = onmouseup;</span>
+<span class="cstat-no" title="statement not covered" >      canvas.onmousemove = onmousemove;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      bounds = canvas.getBoundingClientRect();</span>
+<span class="cstat-no" title="statement not covered" >      ctx = canvas.getContext('2d');</span>
+<span class="cstat-no" title="statement not covered" >      hasLoaded = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      draw();</span>
+    },
+  },
+};
+&lt;/script&gt;
+&nbsp;
+&lt;style scoped&gt;
+.tool {
+  margin: 2px 2px;
+  padding: 10px 5px;
+  height: 4vw;
+  width: 4vw;
+  background-color: grey;
+  box-shadow: 0px 0px 0px 0px rgba(255, 252, 80, 1);
+  font-size: 2vw;
+  color: white;
+}
+&nbsp;
+.tool:hover {
+  background-color: black;
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jun 29 2019 11:40:37 GMT+0300 (Moscow Standard Time)
+</div>
+</div>
+<script src="..\..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\..\sorter.js"></script>
+</body>
+</html>

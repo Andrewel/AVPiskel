@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for projectP/src/components/Frame.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">projectP/src/components</a> Frame.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/87</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/85</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;section class="frames-tools-wrapper"&gt;
+    &lt;ul id="frame-list" class="frame-list"&gt;&lt;/ul&gt;
+    &lt;button id="add-frame-button" class="add-frame-button"&gt;
+      &lt;i class="fas fa-plus" style="color: white;font-size:2rem;margin-right: 10px"&gt;&lt;/i&gt;Add new
+      &lt;br&gt;frame
+    &lt;/button&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+/* eslint-disable */
+export default {
+  name: 'Frame',
+  props: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+<span class="fstat-no" title="function not covered" >  data() {</span>
+<span class="cstat-no" title="statement not covered" >    return {};</span>
+  },
+<span class="fstat-no" title="function not covered" >   mounted() {</span>
+<span class="cstat-no" title="statement not covered" >    this.Frame();</span>
+  },
+  methods: {
+<span class="fstat-no" title="function not covered" >    Frame() {</span>
+<span class="cstat-no" title="statement not covered" >      const addFrameButton = document.querySelector('#add-frame-button');</span>
+<span class="cstat-no" title="statement not covered" >      const framesList = document.querySelector('#frame-list');</span>
+<span class="cstat-no" title="statement not covered" >      const mainCanvas = document.querySelector('#canvas');</span>
+<span class="cstat-no" title="statement not covered" >      const previewCanvas = document.querySelector('#preview-canvas');</span>
+<span class="cstat-no" title="statement not covered" >      const fpsInput = document.querySelector('#input-fps');</span>
+<span class="cstat-no" title="statement not covered" >      const fpsOutput = document.querySelector('#output-fps');</span>
+<span class="cstat-no" title="statement not covered" >      const storage = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      const fpsInputfunc = () =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        fpsOutput.value = fpsInput.value;</span>
+<span class="cstat-no" title="statement not covered" >        canvas.animationSpeed = 100 / fpsOutput.value;</span>
+      };
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      const addFrameButtonfunc = () =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        const frameIndex = document.querySelectorAll('.frame').length + 1;</span>
+<span class="cstat-no" title="statement not covered" >        const img = mainCanvas.toDataURL();</span>
+<span class="cstat-no" title="statement not covered" >        createFrame(frameIndex, img);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const frames = document.querySelectorAll('.frame');</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; frames.length; i += 1) {</span>
+<span class="cstat-no" title="statement not covered" >          frames[i].addEventListener('click', frameChoose, false);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        clearCanvas();</span>
+      };
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      const frameChoose = function(e) {</span></span></span>
+<span class="cstat-no" title="statement not covered" >        const frames = document.querySelectorAll(`.${e.target.className}`);</span>
+<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" >        for (const frame of frames) {</span></span>
+<span class="cstat-no" title="statement not covered" >          frame.style.border = '3px solid gray';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        document.querySelector(`#${e.target.id}`).style.border =</span>
+          '3px solid yellow';
+<span class="cstat-no" title="statement not covered" >        mainCanvas.style.backgroundImage =</span>
+          storage[e.target.id.replace(/^\D+/g, '') - 1];
+      };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >     const canvas = {</span>
+        paintingAllowed: false,
+        isDrawing: false,
+        context: mainCanvas.getContext('2d'),
+        previewContext: previewCanvas.getContext('2d'),
+        animationSpeed: 100 / fpsOutput.value,
+        order: 0,
+        penColor: 'black',
+      };
+<span class="cstat-no" title="statement not covered" >      fpsInput.addEventListener('input', fpsInputfunc);</span>
+<span class="fstat-no" title="function not covered" >      function updateFrames() {</span>
+<span class="cstat-no" title="statement not covered" >        const framesNumbers = document.querySelectorAll('.frame-number');</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; framesNumbers.length; i += 1) {</span>
+<span class="cstat-no" title="statement not covered" >          framesNumbers[i].textContent = i + 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        const frames = document.querySelectorAll('.frame');</span>
+<span class="cstat-no" title="statement not covered" >        for (let i = 0; i &lt; frames.length; i += 1) {</span>
+<span class="cstat-no" title="statement not covered" >          frames[i].style.backgroundImage = storage[i];</span>
+        }
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function deleteFrame(frame) {</span>
+<span class="cstat-no" title="statement not covered" >        const frameIndex = frame.childNodes[0].childNodes[0].textContent - 1;</span>
+<span class="cstat-no" title="statement not covered" >        storage.splice(frameIndex, 1);</span>
+<span class="cstat-no" title="statement not covered" >        frame.remove();</span>
+<span class="cstat-no" title="statement not covered" >        updateFrames();</span>
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function copyFrame(frame) {</span>
+<span class="cstat-no" title="statement not covered" >        const frameIndex = frame.childNodes[0].childNodes[0].textContent - 1;</span>
+<span class="cstat-no" title="statement not covered" >        const img = storage[frameIndex];</span>
+<span class="cstat-no" title="statement not covered" >        storage.splice(frameIndex, 0, img);</span>
+<span class="cstat-no" title="statement not covered" >        createFrame(frameIndex, img);</span>
+<span class="cstat-no" title="statement not covered" >        updateFrames();</span>
+      }
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function toggleFullScreen() {</span>
+<span class="cstat-no" title="statement not covered" >        if (!document.fullscreenElement) {</span>
+<span class="cstat-no" title="statement not covered" >          previewCanvas.requestFullscreen();</span>
+<span class="cstat-no" title="statement not covered" >        } else if (document.exitFullscreen) {</span>
+<span class="cstat-no" title="statement not covered" >          document.exitFullscreen();</span>
+        }
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      previewCanvas.addEventListener('click', () =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        toggleFullScreen();</span>
+      });
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function clearCanvas() {</span>
+<span class="cstat-no" title="statement not covered" >        canvas.context.clearRect(0, 0, 700, 700);</span>
+      }
+<span class="fstat-no" title="function not covered" >      function createFrame(frameIndex, img) {</span>
+<span class="cstat-no" title="statement not covered" >        const listItem = document.createElement('li');</span>
+<span class="cstat-no" title="statement not covered" >        framesList.appendChild(listItem);</span>
+<span class="cstat-no" title="statement not covered" >        const frameDiv = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >        frameDiv.className = 'frame';</span>
+<span class="cstat-no" title="statement not covered" >        frameDiv.id = `frame${frameIndex}`;</span>
+<span class="cstat-no" title="statement not covered" >        listItem.appendChild(frameDiv);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const frameNumber = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >        frameNumber.className = 'frame-detail frame-number';</span>
+<span class="cstat-no" title="statement not covered" >        frameNumber.textContent = frameIndex;</span>
+<span class="cstat-no" title="statement not covered" >        frameDiv.appendChild(frameNumber);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const deleteFrameButton = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >        deleteFrameButton.className = 'frame-detail frame-delete';</span>
+<span class="cstat-no" title="statement not covered" >        deleteFrameButton.innerHTML = '&lt;i class="fas fa-trash-alt"&gt;';</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        deleteFrameButton.addEventListener('click', () =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          deleteFrame(listItem);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        frameDiv.appendChild(deleteFrameButton);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const moveFrameButton = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >        moveFrameButton.className = 'frame-detail frame-move';</span>
+<span class="cstat-no" title="statement not covered" >        moveFrameButton.innerHTML = '&lt;i class="fas fa-arrows-alt"&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        frameDiv.appendChild(moveFrameButton);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const copyFrameButton = document.createElement('div');</span>
+<span class="cstat-no" title="statement not covered" >        copyFrameButton.className = 'frame-detail frame-copy';</span>
+<span class="cstat-no" title="statement not covered" >        copyFrameButton.innerHTML = '&lt;i class="fas fa-copy"&gt;';</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >        copyFrameButton.addEventListener('click', () =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >          copyFrame(listItem);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        frameDiv.appendChild(copyFrameButton);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        frameDiv.style.backgroundImage = `url(${img})`;</span>
+<span class="cstat-no" title="statement not covered" >        storage.push(`url(${img})`);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      addFrameButton.addEventListener('click', addFrameButtonfunc);</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >      function animate() {</span>
+<span class="cstat-no" title="statement not covered" >        requestAnimationFrame(animate);</span>
+<span class="cstat-no" title="statement not covered" >        previewCanvas.style.backgroundImage =</span>
+          storage[Math.round(canvas.order / canvas.animationSpeed)];
+<span class="cstat-no" title="statement not covered" >        if (canvas.order &lt; storage.length * canvas.animationSpeed) {</span>
+<span class="cstat-no" title="statement not covered" >          canvas.order += 1;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          canvas.order = 0;</span>
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      animate();</span>
+    },
+  },
+};
+&lt;/script&gt;
+&nbsp;
+&lt;style&gt;
+.application-action-section {
+  width: 10vw;
+}
+&nbsp;
+.frames-tools-wrapper {
+  padding: 0px 10px;
+  max-width: 150px;
+}
+&nbsp;
+::-webkit-scrollbar {
+  display: none;
+}
+&nbsp;
+.frame-list {
+  max-height: 70vh;
+  padding: 0;
+  overflow: scroll;
+}
+&nbsp;
+.frame-list &gt; li {
+  background-image: url(../assets/images/small.png);
+  border-radius: 5px;
+}
+&nbsp;
+.frame {
+  height: 130px;
+  width: 130px;
+  margin-bottom: 8px;
+  border-width: 3px;
+  border-color: #888888;
+  border-style: solid;
+  border-radius: 5px;
+  color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+&nbsp;
+.frame:hover {
+  border-color: white;
+  color: white;
+}
+&nbsp;
+.frame-detail {
+  height: 33px;
+  width: 33px;
+  padding: 5px;
+  background-color: transparent;
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 23px;
+  color: inherit;
+}
+&nbsp;
+.frame-number {
+  margin: -2px 30px 30px -2px;
+  font-weight: 900;
+  color: white;
+}
+&nbsp;
+.frame-delete {
+  margin: -2px -2px 30px 30px;
+}
+&nbsp;
+.frame-move {
+  margin: 31px 30px -2px -2px;
+}
+&nbsp;
+.frame-copy {
+  margin: 31px -2px -2px 30px;
+}
+&nbsp;
+.add-frame-button {
+  height: 50px;
+  width: 130px;
+  padding: 5px;
+  display: flex;
+  margin-bottom: 10px;
+  border-width: 3px;
+  border-color: #888888;
+  border-style: solid;
+  border-radius: 5px;
+  color: #2c3e50;
+  font-size: 14px;
+  background-color: #cfcfcf;
+}
+&nbsp;
+.add-frame-button:hover {
+  border-color: #fffc50;
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Jun 29 2019 11:40:37 GMT+0300 (Moscow Standard Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

@@ -5,35 +5,14 @@
       <canvas id="canvas" ref="canvas" :width="width" :height="height"></canvas>
       <canvas id="cursor" ref="cursor" :width="width" :height="height"></canvas>
     </div>
-    <ul class="tools">
-      <li id="tool-pencil" :class="{ active: selectedToolIdx === 0 }" @click="changeTool(0)">
-        <i class="fas fa-pencil-alt tool paint-icon" id="paint-tool"></i>
-      </li>
-      <li id="tool-eraser" :class="{ active: selectedToolIdx === 1 }" @click="changeTool(1)">
-        <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
-      </li>
-      <li id="tool-color-palette" @click="showColorPalette()">
-        <i class="fas fa-palette tool palette-icon" id="palette"></i>
-      </li>
-      <li id="tool-download" @click="download()">
-        <i class="fas fa-download tool download-icon" id="download"></i>
-      </li>
-      <li id="tool-download-firestore" @click="downloadFirestore()">
-        <i class="fas fa-download tool download-icon" id="downloadFirestore"></i>
-      </li>
-      <FirebaseStore />
-    </ul>
   </div>
 </template>
 
 <script>
-import FirebaseStore from '../components/FirebaseStore';
-
 export default {
+  /* eslint-disable */
   name: 'CanvasDraw',
-  components: {
-    FirebaseStore,
-  },
+  components: {},
   props: {
     brushSize: {
       type: Number,
@@ -41,41 +20,21 @@ export default {
     },
     width: {
       type: Number,
-      default: 640,
+      default: 700,
     },
     height: {
       type: Number,
-      default: 480,
-    },
-    outputName: {
-      type: String,
-      default: 'canvas',
+      default: 700,
     },
   },
   data() {
-    return {
-      canvasContext: null,
-      cursorContext: null,
-      isDrawing: false,
-      lastX: 0,
-      lastY: 0,
-      tools: [
-        {
-          name: 'Pencil',
-          color: '#000000',
-        },
-        {
-          name: 'Eraser',
-        },
-      ],
-      selectedToolIdx: 0,
-    };
+    return {};
   },
-  mounted() {
+  /*  mounted() {
     this.setCanvas();
     this.bindEvents();
-  },
-  methods: {
+  }, */
+  /*  methods: {
     setCanvas() {
       this.$refs.canvasWrapper.style.gridTemplateColumns = `${
         this.width
@@ -90,9 +49,11 @@ export default {
       this.canvasContext.strokeStyle = this.tools[this.selectedToolIdx].color;
 
       this.cursorContext = this.$refs.cursor.getContext('2d');
+      // eslint-disable-next-line no-console
+      console.log(this.$refs);
     },
     bindEvents() {
-      this.$refs.canvas.addEventListener('mousedown', (event) => {
+      this.$refs.canvas.addEventListener('mousedown', event => {
         this.isDrawing = true;
         [this.lastX, this.lastY] = [event.offsetX, event.offsetY];
       });
@@ -119,7 +80,9 @@ export default {
         this.canvasContext.globalCompositeOperation = 'destination-out';
       } else {
         this.canvasContext.globalCompositeOperation = 'source-over';
-        this.canvasContext.strokeStyle = this.tools[this.selectedToolIdx].color;
+        this.canvasContext.strokeStyle = document.getElementById(
+          'palette1',
+        ).value;
       }
 
       this.canvasContext.beginPath();
@@ -144,28 +107,7 @@ export default {
         this.cursorContext.clearRect(0, 0, this.width, this.height);
       }, 100);
     },
-    showColorPalette() {
-      const colorPalette = document.createElement('input');
-      colorPalette.addEventListener('change', (event) => {
-        this.tools[0].color = event.target.value;
-      });
-      colorPalette.type = 'color';
-      colorPalette.value = this.tools[0].color;
-      colorPalette.click();
-    },
-    download() {
-      const link = document.createElement('a');
-      link.download = `${this.outputName}.png`;
-      link.href = this.$refs.canvas.toDataURL();
-      link.click();
-    },
-    downloadFirestore() {
-      const link = document.createElement('a');
-      link.download = `${this.outputName}.png`;
-      link.href = this.$refs.canvas.toDataURL();
-      link.click();
-    },
-  },
+  }, */
 };
 </script>
 <style scoped>
@@ -181,26 +123,11 @@ export default {
   z-index: 1;
   pointer-events: none;
 }
-.active {
-  background-color: #dea878 !important;
-}
-.tools {
-  margin: 0;
-  padding: 0;
-}
-.tools li {
-  padding: 4px;
-  background-color: #c8c8c8;
-  border-left: 1px solid #abaaaa;
-}
-.tools li:not(:last-child) {
-  border-bottom: 1px solid #abaaaa;
-}
 .draw-area canvas {
   position: absolute;
   left: 0;
   top: 0;
   border: 2px solid #c8c8c8;
-  border-radius: 10px 0 10px 10px;
+  border-radius: 10px;
 }
 </style>

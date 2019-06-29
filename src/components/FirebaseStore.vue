@@ -1,17 +1,15 @@
 
 <template>
-  <v-app>
-    <article v-for="(User, idx) of Users" :key="idx">
-      <v-avatar class="avatar" :tile="false" size="200px" color="grey lighten-4">
-        <img :src="User.image" alt="avatar">
-      </v-avatar>
-      <p>
-        <strong>{{ User.name}}-{{ User.age}}-{{ User.country}}</strong>
-      </p>
-    </article>
-    <v-btn class="upload_button" @click.native="selectFile" v-if="!uploadEnd && !uploading">
-      <v-icon right aria-hidden="true">add_a_photo</v-icon>
-    </v-btn>
+  <li id="tool-firebase-firestore">
+    <!--  <v-btn class="upload_button" @click.native="selectFile" v-if="!uploadEnd && !uploading">
+       <v-icon right aria-hidden="true">add_a_photo</v-icon>
+    </v-btn>-->
+    <i
+      class="fas fa-cloud-upload-alt tool cloud-upload-alt-icon upload_button"
+      id="cloud-upload-alt"
+      @click="selectFile()"
+      v-if="!uploadEnd && !uploading"
+    ></i>
     <input
       id="files"
       type="file"
@@ -39,7 +37,7 @@
       {{ text }}
       <v-btn dark flat @click="snackbar = false;">Close</v-btn>
     </v-snackbar>
-  </v-app>
+  </li>
 </template>
 
 <script>
@@ -152,9 +150,6 @@ export default {
 </script>
 
 <style scoped>
-.avatar {
-  margin: 2%;
-}
 .upload_button {
   text-align: center;
 }
@@ -169,5 +164,19 @@ input {
   margin: 1% 0;
   width: auto;
   padding: 15px;
+}
+.tool {
+  margin: 2px 2px;
+  padding: 10px 5px;
+  height: 4vw;
+  width: 4vw;
+  background-color: grey;
+  box-shadow: 0px 0px 0px 0px rgba(255, 252, 80, 1);
+  font-size: 2vw;
+  color: white;
+}
+
+.tool:hover {
+  background-color: black;
 }
 </style>
