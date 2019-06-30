@@ -2,12 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import firebase from 'firebase';
 
-import Home from '../components/Home';
-import Login from '../components/Login';
-import SignUp from '../components/SignUp';
-import NotFound from '../components/NotFound';
-import Profile from '../components/Profile';
-import Likes from '../components/Likes';
+import Home from '../views/Home';
+import Login from '../views/Login';
+import SignUp from '../views/SignUp';
+import NotFound from '../views/NotFound';
+import Profile from '../views/Profile';
+import Likes from '../views/Likes';
 
 Vue.use(Router);
 
