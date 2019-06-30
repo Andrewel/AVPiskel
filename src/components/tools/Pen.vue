@@ -5,11 +5,19 @@
     </li>
     <li id="tool-eraser" :class="{ active: SelectedToolId === 1 }" @click="changeTool(1)">
       <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
-    </li> -->
-    <li id="tool-pen" :class="{ active: SelectedToolId === 0 }" @click="bindEvents()">
+    </li>-->
+    <li
+      id="tool-pen"
+      :class="{ active: this.$store.state.SelectedTool === 0 }"
+      @click="bindEvents()"
+    >
       <i class="fas fa-pen tool pen-icon" id="pen"></i>
     </li>
-    <li id="tool-eraser" :class="{ active: SelectedToolId === 1 }" @click="changeTool(1)">
+    <li
+      id="tool-eraser"
+      :class="{ active: this.$store.state.SelectedTool === 1 }"
+      @click="changeTool(1)"
+    >
       <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
     </li>
   </ul>
@@ -75,7 +83,7 @@ export default {
       }
     }); */
   },
-/*   mounted() {
+  /*   mounted() {
     this.setCanvas();
     this.bindEvents();
   }, */
@@ -99,7 +107,7 @@ export default {
       this.cursorContext = document.querySelector('#cursor').getContext('2d');
     },
     bindEvents() {
-      this.setCanvas()
+      this.setCanvas();
       document.querySelector('#canvas').onmousedown = e => {
         this.isDrawing = true;
         [this.lastX, this.lastY] = [e.offsetX, e.offsetY];

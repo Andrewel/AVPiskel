@@ -1,5 +1,9 @@
 <template>
-  <li id="tool-pencil-ruler" @click="StrokeLine()">
+  <li
+    id="tool-pencil-ruler"
+    :class="{ active: this.$store.state.SelectedTool === 6 }"
+    @click="StrokeLine()"
+  >
     <i class="fas fa-pencil-ruler tool pencil-ruler-icon" id="pencil-ruler"></i>
   </li>
 </template>
@@ -17,8 +21,18 @@ export default {
   data() {
     return {};
   },
+  created() {
+    document.addEventListener('keyup', e => {
+       const KeyL = 76;
+
+      if (e.keyCode === KeyL) {
+       this.StrokeLine()
+      }
+    });
+  },
   methods: {
     StrokeLine() {
+      this.$store.state.SelectedTool = 6;
       const canvasWidth = 700;
       const canvasHeight = 700;
       let canvas = null;

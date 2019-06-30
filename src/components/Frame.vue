@@ -2,7 +2,7 @@
   <section class="frames-tools-wrapper">
     <ul id="frame-list" class="frame-list">
       <li class="frame" draggable="true">
-        <span>A</span>
+       <span>A</span>
       </li>
       <li class="frame" draggable="true">
         <span>B</span>
@@ -10,16 +10,10 @@
       <li class="frame" draggable="true">
         <span>C</span>
       </li>
-      <li class="frame" draggable="true">
-        <span>D</span>
-      </li>
-      <li class="frame" draggable="true">
-        <span>E</span>
-      </li>
     </ul>
 
     <!-- <ul id="frame-list" class="frame-list"></ul> -->
-    <button id="add-frame-button" class="add-frame-button">
+    <button id="add-frame-button" class="add-frame-button" @dblclick="DragFunc()">
       <i class="fas fa-plus" style="color: white;font-size:2rem;margin-right: 10px"></i>Add new
       <br>frame
     </button>
@@ -40,8 +34,8 @@ export default {
     return {};
   },
   mounted() {
-    this.Frame();
     this.DragFunc();
+    this.Frame();
   },
   methods: {
     DragFunc() {
@@ -116,7 +110,7 @@ export default {
         elem.addEventListener('dragend', handleDragEnd, false);
       }
 
-     /*  var cols = document.querySelectorAll('#columns .column');
+      /*  var cols = document.querySelectorAll('#columns .column');
       [].forEach.call(cols, addDnDHandlers); */
 
       var cols = document.querySelectorAll('#frame-list .frame');
@@ -226,11 +220,12 @@ export default {
       }
       function createFrame(frameIndex, img) {
         const listItem = document.createElement('li');
+        listItem.className = 'frame';
+        listItem.setAttribute('draggable', true);
         framesList.appendChild(listItem);
         const frameDiv = document.createElement('div');
-        frameDiv.className = 'frame';
+        //frameDiv.className = 'frame';
         frameDiv.id = `frame${frameIndex}`;
-        frameDiv.setAttribute('draggable', true);
         listItem.appendChild(frameDiv);
 
         const frameNumber = document.createElement('div');
@@ -262,7 +257,7 @@ export default {
         });
         frameDiv.appendChild(copyFrameButton);
 
-        frameDiv.style.backgroundImage = `url(${img})`;
+        listItem.style.backgroundImage = `url(${img})`;
         storage.push(`url(${img})`);
       }
 
@@ -383,7 +378,7 @@ export default {
   user-select: none;
 }
 
-#columns {
+/* #columns {
   position: relative;
   list-style-type: none;
   z-index: 3;
@@ -414,13 +409,13 @@ export default {
 .column.over {
   //border: 2px dashed #000;
   border-top: 2px solid blue;
-}
-#frame-list {
+} */
+/* #frame-list {
   position: relative;
   list-style-type: none;
   z-index: 3;
-}
-
+} */
+/*
 .frame {
   width: 162px;
   padding-bottom: 5px;
@@ -428,17 +423,7 @@ export default {
   text-align: center;
   cursor: move;
 }
-.frame span {
-  height: 20px;
-  width: 150px;
-  color: black;
-  background-color: #ccc;
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
-  border-radius: 10px;
-  border: 2px solid #666666;
-}
-
+*/
 .frame.over {
   //border: 2px dashed #000;
   border-top: 20px solid blue;

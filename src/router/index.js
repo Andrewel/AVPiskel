@@ -8,7 +8,6 @@ import SignUp from '../components/SignUp';
 import NotFound from '../components/NotFound';
 import Profile from '../components/Profile';
 import Likes from '../components/Likes';
-import CV from '../components/CV';
 
 Vue.use(Router);
 
@@ -27,14 +26,6 @@ const router = new Router({
       path: '/signup',
       name: 'SignUp',
       component: SignUp,
-    },
-    {
-      path: '/cv',
-      name: 'CV',
-      component: CV,
-      meta: {
-        requiresAuth: true,
-      },
     },
     {
       path: '/home',
@@ -76,7 +67,6 @@ router.beforeEach((to, from, next) => {
   else if (!requiresAuth && currentUser) next('home');
   else if (!requiresAuth && currentUser) next('profile');
   else if (!requiresAuth && currentUser) next('likes');
-  else if (!requiresAuth && currentUser) next('cv');
   else next();
 });
 

@@ -1,5 +1,9 @@
 <template>
-  <li id="tool-fill-drip" @click="Bucket()">
+  <li
+    id="tool-fill-drip"
+    :class="{ active: this.$store.state.SelectedTool === 3 }"
+    @click="Bucket()"
+  >
     <i class="fas fa-fill-drip tool fill-drip-icon" id="fill-drip"></i>
   </li>
 </template>
@@ -17,8 +21,18 @@ export default {
   data() {
     return {};
   },
+  created() {
+    document.addEventListener('keyup', e => {
+      const KeyB = 66;
+
+      if (e.keyCode === KeyB) {
+        this.Bucket();
+      }
+    });
+  },
   methods: {
     Bucket() {
+      this.$store.state.SelectedTool = 3;
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
 
@@ -108,12 +122,12 @@ export default {
         ctx.putImageData(dstImg, 0, 0);
       };
 
-       canvas.onclick = function(e) {
+      canvas.onclick = function(e) {
         const startX = e.pageX - canvas.offsetLeft;
         const startY = e.pageY - canvas.offsetTop;
         floodFill(startX, startY, { r: 255 });
       };
-     /*  canvas.onclick = function(e) {
+      /*  canvas.onclick = function(e) {
         const startX = e.clientX - canvas.offsetLeft;
         const startY = e.clientY - canvas.offsetTop;
         floodFill(startX, startY, { r: 255 });

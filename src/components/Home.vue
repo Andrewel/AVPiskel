@@ -39,8 +39,8 @@
             </li>
           </ul>
         </div>
+        <Pen :SelectedToolId="SelectedToolId"/>
         <ul class="ul-tools">
-          <Pen :SelectedToolId="SelectedToolId"/>
           <li id="tool-pen">
             <i class="fas fa-pen tool pen-icon" id="pen"></i>
           </li>
@@ -123,10 +123,8 @@
         </button>
       </section>-->
       <Frame/>
-      <div class="canvas-wrapper">
-        <div class="show-area">
-          <CanvasDraw :width="width" :height="height"/>
-        </div>
+      <div class="main-canvas-wrapper">
+        <CanvasDraw :width="width" :height="height"/>
         <!-- <div class="main-canvas-wrapper">
           <canvas id="canvas" class="main-canvas" width="700" height="700"></canvas>
         </div>-->
@@ -215,31 +213,73 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyP = 80;
+      const KeyB = 66;
+      const KeyE = 69;
+      const KeyL = 76;
+      const KeyR = 82;
       const KeyC = 67;
+      const KeyV = 86;
+      const KeyI = 73;
+      const KeyP = 80;
+
       const KeyM = 77;
       const KeyT = 84;
       const KeyX = 88;
 
       if (e.keyCode === KeyP) {
         alert('p');
-        this.SelectedToolId = 0;
+        // this.SelectedToolId = 0;
+        this.$store.state.SelectedTool = 15;
         // PaintBucketTool();
       } else if (e.keyCode === KeyC) {
         alert('c');
-        this.SelectedToolId = 1;
+        // this.SelectedToolId = 1;
+        this.$store.state.SelectedTool = 1;
+        // ChooseColorTool();
+      } else if (e.keyCode === KeyB) {
+        alert('c');
+        // this.SelectedToolId = 1;
+        this.$store.state.SelectedTool = 1;
+        // ChooseColorTool();
+      } else if (e.keyCode === KeyE) {
+        alert('c');
+        // this.SelectedToolId = 1;
+        this.$store.state.SelectedTool = 1;
+        // ChooseColorTool();
+      } /* else if (e.keyCode === KeyL) {
+        alert('c');
+        // this.SelectedToolId = 1;
+        this.$store.state.SelectedTool = 6;
+        // ChooseColorTool();
+      } */ else if (e.keyCode === KeyR) {
+        alert('c');
+        // this.SelectedToolId = 1;
+        this.$store.state.SelectedTool = 1;
+        // ChooseColorTool();
+      } /* else if (e.keyCode === KeyV) {
+        alert('c');
+        // this.SelectedToolId = 1;
+        this.$store.state.SelectedTool = 1;
+        // ChooseColorTool();
+      } */ else if (e.keyCode === KeyI) {
+        alert('c');
+        // this.SelectedToolId = 1;
+        this.$store.state.SelectedTool = 1;
         // ChooseColorTool();
       } else if (e.keyCode === KeyM) {
         alert('m');
-        this.SelectedToolId = 3;
+        //this.SelectedToolId = 3;
+        this.$store.state.SelectedTool = 3;
         // MoveTool();
       } else if (e.keyCode === KeyT) {
         alert('t');
         // TransformTool();
       } else if (e.keyCode === KeyX) {
         let value = document.getElementById('palette1').value;
-        document.getElementById('palette1').value = document.getElementById('palette2').value;
-        document.getElementById('palette2').value = value
+        document.getElementById('palette1').value = document.getElementById(
+          'palette2',
+        ).value;
+        document.getElementById('palette2').value = value;
         alert('x');
         // TransformTool();
       }
@@ -299,10 +339,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
-}
-.show-area {
-  width: fit-content;
-  margin: 0 auto;
 }
 .logout {
   top: 100%;

@@ -1,5 +1,9 @@
 <template>
-  <li id="tool-circle" @click="CircleTool()">
+  <li
+    id="tool-circle"
+    :class="{ active: this.$store.state.SelectedTool === 3 }"
+    @click="CircleTool()"
+  >
     <i class="far fa-circle tool circle-icon" id="circle"></i>
   </li>
 </template>

@@ -116,7 +116,7 @@ export default {
   position: relative;
 }
 #canvas {
-  background-color: #f9f9f9;
+  background-image: url(../assets/images/large.png);
   z-index: 0;
 }
 #cursor {

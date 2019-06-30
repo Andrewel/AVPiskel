@@ -1,9 +1,8 @@
 <template>
   <li
     id="tool-pencil-alt"
-    :class="{ active: SelectedToolId === 3 }"
+    :class="{ active: this.$store.state.SelectedTool === 2 }"
     @click="MirrorPen()"
-    @dblclick="ggwp()"
   >
     <i class="fas fa-pencil-alt tool pencil-alt-icon" id="pencil-alt"></i>
   </li>
@@ -28,8 +27,18 @@ export default {
       isDrawing: true,
     };
   },
+   created() {
+    document.addEventListener('keyup', e => {
+       const KeyV = 86;
+
+      if (e.keyCode === KeyV) {
+       this.MirrorPen()
+      }
+    });
+  },
   methods: {
     MirrorPen() {
+      this.$store.state.SelectedTool = 2
       let prevX = 0;
       let currX = 0;
       let prevY = 0;
@@ -147,9 +156,8 @@ export default {
       canvas.onpointerup = stopDrawing;
       canvas.onpointerout = stopDrawing; */
     },
-    ggwp() {
-      /*  this.MirrorPen(false); */
-      document.querySelector('#canvas').onmousemove = null;
+    changeTool(tool) {
+      this.SelectedToolId = tool;
     },
   },
 };
