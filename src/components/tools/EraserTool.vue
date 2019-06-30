@@ -1,24 +1,17 @@
 <template>
-  <ul class="tools">
-    <!-- <li id="tool-pen" :class="{ active: SelectedToolId === 0 }" @click="changeTool(0)">
-      <i class="fas fa-pen tool pen-icon" id="pen"></i>
-    </li>
-    <li id="tool-eraser" :class="{ active: SelectedToolId === 1 }" @click="changeTool(1)">
-      <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
-    </li> -->
-    <li id="tool-pen" :class="{ active: SelectedToolId === 0 }" @click="bindEvents()">
-      <i class="fas fa-pen tool pen-icon" id="pen"></i>
-    </li>
-    <li id="tool-eraser" :class="{ active: SelectedToolId === 1 }" @click="changeTool(1)">
+    <li
+      id="tool-eraser"
+      :class="{ active: this.$store.state.SelectedTool === 5 }"
+      @click="bindEvents()"
+    >
       <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
     </li>
-  </ul>
 </template>
 
 <script>
 /* eslint-disable */
 export default {
-  name: 'Pen',
+  name: 'EraserTool',
   props: {
     brushSize: {
       type: Number,
@@ -48,97 +41,64 @@ export default {
           name: 'Eraser',
         },
       ],
-      selectedToolIdx: 0,
+      selectedToolIdx: 1,
     };
   },
   created() {
-    /*    document.addEventListener('keyup', (e) => {
-      const KeyP = 80;
-      const KeyC = 67;
-      const KeyM = 77;
-      const KeyT = 84;
+    document.addEventListener('keyup', e => {
+      const KeyE = 69;
 
-      if (e.keyCode === KeyP) {
-        alert('p');
-        this.SelectedToolId = 0;
-        // PaintBucketTool();
-      } else if (e.keyCode === KeyC) {
-        alert('c');
-        this.SelectedToolId = 1;
-        // ChooseColorTool();
-      } else if (e.keyCode === KeyM) {
-        alert('m');
-        // MoveTool();
-      } else if (e.keyCode === KeyT) {
-        alert('t');
-        // TransformTool();
+      if (e.keyCode === KeyE) {
+        this.bindEvents();
       }
-    }); */
+    });
   },
-/*   mounted() {
-    this.setCanvas();
-    this.bindEvents();
-  }, */
   methods: {
     setCanvas() {
-      document.querySelector('.canvas-wrapper').style.gridTemplateColumns = `${
+      /* document.querySelector('.canvas-wrapper').style.gridTemplateColumns = `${
         this.width
       }px 30px`;
       document.querySelector('.canvas-wrapper').style.width = `${this.width +
         30}px`;
       document.querySelector('.canvas-wrapper').style.height = `${
         this.height
-      }px`;
+      }px`; */
 
       this.canvasContext = document.querySelector('#canvas').getContext('2d');
       this.canvasContext.lineJoin = 'round';
       this.canvasContext.lineCap = 'round';
       this.canvasContext.lineWidth = this.brushSize;
-      this.canvasContext.strokeStyle = this.tools[this.SelectedToolId].color;
+      this.canvasContext.strokeStyle = this.tools[this.selectedToolIdx].color;
 
       this.cursorContext = document.querySelector('#cursor').getContext('2d');
     },
     bindEvents() {
-      this.setCanvas()
+      this.$store.state.SelectedTool = 5;
+      this.setCanvas();
       document.querySelector('#canvas').onmousedown = e => {
         this.isDrawing = true;
         [this.lastX, this.lastY] = [e.offsetX, e.offsetY];
       };
-      /* document.querySelector('#canvas').addEventListener('mousedown', e => {
-        this.isDrawing = true;
-        [this.lastX, this.lastY] = [e.offsetX, e.offsetY];
-      }); */
+
       document.querySelector('#canvas').onmousemove = this.draw;
-      /*  document
-        .querySelector('#canvas')
-        .addEventListener('mousemove', this.draw); */
+
       document.querySelector('#canvas').onmouseup = () => {
         this.isDrawing = false;
       };
-      /* document.querySelector('#canvas').addEventListener(
-        'mouseup',
-        // eslint-disable-next-line no-return-assign
-        () => (this.isDrawing = false),
-      ); */
       document.querySelector('#canvas').onmouseout = () => {
         this.isDrawing = false;
       };
-      /* document.querySelector('#canvas').addEventListener(
-        'mouseout',
-        // eslint-disable-next-line no-return-assign
-        () => (this.isDrawing = false),
-      ); */
     },
     changeTool(tool) {
-      this.SelectedToolId = tool;
+      this.selectedToolIdx = tool;
     },
     draw(e) {
       // this.drawCursor(e);
       if (!this.isDrawing) return;
 
-      if (this.tools[this.SelectedToolId].name === 'Eraser') {
+      if (this.tools[this.selectedToolIdx].name === 'Eraser') {
         this.canvasContext.globalCompositeOperation = 'destination-out';
-      } else if (this.tools[this.SelectedToolId].name === 'Pencil') {
+      } else if (this.tools[this.selectedToolIdx].name === 'Pencil') {
         this.canvasContext.globalCompositeOperation = 'source-over';
         this.canvasContext.strokeStyle = document.getElementById(
           'palette1',
@@ -150,6 +110,7 @@ export default {
       this.canvasContext.lineTo(e.offsetX, e.offsetY);
       this.canvasContext.stroke();
       [this.lastX, this.lastY] = [e.offsetX, e.offsetY];
+      this.canvasContext.globalCompositeOperation = 'source-over';
     },
     drawCursor(e) {
       this.cursorContext.beginPath();
@@ -171,7 +132,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .canvas-wrapper {
   display: grid;
   position: relative;

@@ -55,9 +55,10 @@
           <li id="tool-fill">
             <i class="fas fa-fill tool fill-icon" id="fill"></i>
           </li>
-          <li id="tool-eraser">
+         <!--  <li id="tool-eraser">
             <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
-          </li>
+          </li> -->
+          <EraserTool/>
           <!-- <li id="tool-pencil-ruler">
             <i class="fas fa-pencil-ruler tool pencil-ruler-icon" id="pencil-ruler"></i>
           </li>-->
@@ -166,6 +167,7 @@
 /* eslint-disable */
 import firebase from 'firebase';
 import Pen from '../components/tools/Pen';
+import EraserTool from '../components/tools/EraserTool';
 import GoogleDrive from '../components/tools/GoogleDrive';
 import Animation from '../components/Animation';
 import Frame from '../components/Frame';
@@ -182,6 +184,7 @@ import Rectangle from '../components/tools/Rectangle';
 export default {
   name: 'home',
   components: {
+    EraserTool,
     Pen,
     GoogleDrive,
     Animation,
@@ -213,75 +216,14 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyB = 66;
-      const KeyE = 69;
-      const KeyL = 76;
-      const KeyR = 82;
-      const KeyC = 67;
-      const KeyV = 86;
-      const KeyI = 73;
-      const KeyP = 80;
-
-      const KeyM = 77;
-      const KeyT = 84;
       const KeyX = 88;
 
-      if (e.keyCode === KeyP) {
-        alert('p');
-        // this.SelectedToolId = 0;
-        this.$store.state.SelectedTool = 15;
-        // PaintBucketTool();
-      } else if (e.keyCode === KeyC) {
-        alert('c');
-        // this.SelectedToolId = 1;
-        this.$store.state.SelectedTool = 1;
-        // ChooseColorTool();
-      } else if (e.keyCode === KeyB) {
-        alert('c');
-        // this.SelectedToolId = 1;
-        this.$store.state.SelectedTool = 1;
-        // ChooseColorTool();
-      } else if (e.keyCode === KeyE) {
-        alert('c');
-        // this.SelectedToolId = 1;
-        this.$store.state.SelectedTool = 1;
-        // ChooseColorTool();
-      } /* else if (e.keyCode === KeyL) {
-        alert('c');
-        // this.SelectedToolId = 1;
-        this.$store.state.SelectedTool = 6;
-        // ChooseColorTool();
-      } */ else if (e.keyCode === KeyR) {
-        alert('c');
-        // this.SelectedToolId = 1;
-        this.$store.state.SelectedTool = 1;
-        // ChooseColorTool();
-      } /* else if (e.keyCode === KeyV) {
-        alert('c');
-        // this.SelectedToolId = 1;
-        this.$store.state.SelectedTool = 1;
-        // ChooseColorTool();
-      } */ else if (e.keyCode === KeyI) {
-        alert('c');
-        // this.SelectedToolId = 1;
-        this.$store.state.SelectedTool = 1;
-        // ChooseColorTool();
-      } else if (e.keyCode === KeyM) {
-        alert('m');
-        //this.SelectedToolId = 3;
-        this.$store.state.SelectedTool = 3;
-        // MoveTool();
-      } else if (e.keyCode === KeyT) {
-        alert('t');
-        // TransformTool();
-      } else if (e.keyCode === KeyX) {
+      if (e.keyCode === KeyX) {
         let value = document.getElementById('palette1').value;
         document.getElementById('palette1').value = document.getElementById(
           'palette2',
         ).value;
         document.getElementById('palette2').value = value;
-        alert('x');
-        // TransformTool();
       }
     });
   },

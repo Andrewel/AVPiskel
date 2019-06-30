@@ -1,7 +1,7 @@
 <template>
   <li
     id="tool-circle"
-    :class="{ active: this.$store.state.SelectedTool === 3 }"
+    :class="{ active: this.$store.state.SelectedTool === 8 }"
     @click="CircleTool()"
   >
     <i class="far fa-circle tool circle-icon" id="circle"></i>
@@ -21,8 +21,18 @@ export default {
   data() {
     return {};
   },
+  created() {
+    document.addEventListener('keyup', e => {
+      const KeyC = 67;
+
+      if (e.keyCode === KeyC) {
+        this.CircleTool();
+      }
+    });
+  },
   methods: {
     CircleTool() {
+      this.$store.state.SelectedTool = 8;
       // Canvas
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
@@ -35,20 +45,19 @@ export default {
       let mousey = 0;
       let mousedown = false;
 
-      // Mousedown
-      $(canvas).on('mousedown', e => {
+      canvas.onmousedown = function(e) {
         last_mousex = e.clientX - canvasx;
         last_mousey = e.clientY - canvasy;
         mousedown = true;
-      });
+      };
 
-      // Mouseup
-      $(canvas).on('mouseup', e => {
+      canvas.onmouseup = function(e) {
         mousedown = false;
-      });
-
-      // Mousemove
-      $(canvas).on('mousemove', e => {
+      };
+      canvas.onmouseout = function(e) {
+        mousedown = false;
+      };
+      canvas.onmousemove = function(e) {
         mousex = e.clientX - canvasx;
         mousey = e.clientY - canvasy;
         if (mousedown) {
@@ -70,7 +79,7 @@ export default {
           ctx.lineWidth = 5;
           ctx.stroke();
         }
-      });
+      };
     },
   },
 };

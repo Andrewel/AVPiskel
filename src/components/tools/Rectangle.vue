@@ -1,5 +1,9 @@
 <template>
-  <li id="tool-square" @click="Rectangle()">
+  <li
+    id="tool-square"
+    :class="{ active: this.$store.state.SelectedTool === 7 }"
+    @click="Rectangle()"
+  >
     <i class="far fa-square tool square-icon" id="square"></i>
   </li>
 </template>
@@ -17,8 +21,18 @@ export default {
   data() {
     return {};
   },
+  created() {
+    document.addEventListener('keyup', e => {
+      const KeyR = 82;
+
+      if (e.keyCode === KeyR) {
+        this.Rectangle();
+      }
+    });
+  },
   methods: {
     Rectangle() {
+      this.$store.state.SelectedTool = 7;
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
       // Variables
@@ -30,17 +44,19 @@ export default {
       let mousey = 0;
       let mousedown = false;
 
-      $(canvas).on('mousedown', e => {
+      canvas.onmousedown = function(e) {
         last_mousex = e.clientX - canvasx;
         last_mousey = e.clientY - canvasy;
         mousedown = true;
-      });
+      };
 
-      $(canvas).on('mouseup', e => {
+      canvas.onmouseup = function(e) {
         mousedown = false;
-      });
-
-      $(canvas).on('mousemove', e => {
+      };
+      canvas.onmouseout = function(e) {
+        mousedown = false;
+      };
+      canvas.onmousemove = function(e) {
         mousex = e.clientX - canvasx;
         mousey = e.clientY - canvasy;
         if (mousedown) {
@@ -53,7 +69,7 @@ export default {
           ctx.lineWidth = 10;
           ctx.stroke();
         }
-      });
+      };
     },
   },
 };
