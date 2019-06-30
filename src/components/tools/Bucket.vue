@@ -35,6 +35,7 @@ export default {
       this.$store.state.SelectedTool = 3;
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
+      let PaletteColor =  document.getElementById('palette1').value;
 
       const getPixelPos = function(x, y) {
         return (y * canvas.width + x) * 4;
@@ -126,13 +127,9 @@ export default {
         const startX = e.pageX - canvas.offsetLeft;
         const startY = e.pageY - canvas.offsetTop;
         floodFill(startX, startY, { r: 255 });
+        canvas.onclick = null;
       };
-      /*  canvas.onclick = function(e) {
-        const startX = e.clientX - canvas.offsetLeft;
-        const startY = e.clientY - canvas.offsetTop;
-        floodFill(startX, startY, { r: 255 });
-      };
-     */
+     this.$store.state.SelectedTool === 0
     },
   },
 };

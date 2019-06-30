@@ -23,21 +23,20 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-       const KeyL = 76;
+      const KeyL = 76;
 
       if (e.keyCode === KeyL) {
-       this.StrokeLine()
+        this.StrokeLine();
       }
     });
   },
   methods: {
     StrokeLine() {
       this.$store.state.SelectedTool = 6;
-      const canvasWidth = 700;
-      const canvasHeight = 700;
-      let canvas = null;
-      let bounds = null;
-      let ctx = null;
+      let canvas = document.getElementById('canvas');
+      let ctx = canvas.getContext('2d');
+      ctx.strokeStyle = document.getElementById('palette1').value;
+      ctx.lineWidth = this.$store.state.BrushSize;
       let hasLoaded = false;
 
       let startX = 0;
@@ -48,13 +47,10 @@ export default {
       const existingLines = [];
 
       function draw() {
-        // ctx.fillStyle = '#333333';
-        // ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
         clearCanvas();
 
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = document.getElementById('palette1').value;
+
         ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
@@ -66,8 +62,6 @@ export default {
         ctx.stroke();
 
         if (isDrawing) {
-          ctx.strokeStyle = 'darkred';
-          ctx.lineWidth = 3;
           ctx.beginPath();
           ctx.moveTo(startX, startY);
           ctx.lineTo(mouseX, mouseY);
@@ -76,7 +70,7 @@ export default {
       }
 
       function clearCanvas() {
-        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+        ctx.clearRect(0, 0, 700, 700);
       }
 
       function onmousedown(e) {
@@ -119,15 +113,15 @@ export default {
           }
         }
       }
-      canvas = document.getElementById('canvas');
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
+
+      /* canvas.width = canvasWidth;
+      canvas.height = canvasHeight; */
       canvas.onmousedown = onmousedown;
       canvas.onmouseup = onmouseup;
       canvas.onmousemove = onmousemove;
 
-      bounds = canvas.getBoundingClientRect();
-      ctx = canvas.getContext('2d');
+      let bounds = canvas.getBoundingClientRect();
+
       hasLoaded = true;
 
       draw();

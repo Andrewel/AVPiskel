@@ -35,6 +35,8 @@ export default {
       this.$store.state.SelectedTool = 7;
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
+      ctx.strokeStyle = document.getElementById('palette1').value;
+      ctx.lineWidth = this.$store.state.BrushSize;
       // Variables
       const canvasx = $(canvas).offset().left;
       const canvasy = $(canvas).offset().top;
@@ -65,8 +67,7 @@ export default {
           const width = mousex - last_mousex;
           const height = mousey - last_mousey;
           ctx.rect(last_mousex, last_mousey, width, height);
-          ctx.strokeStyle = 'black';
-          ctx.lineWidth = 10;
+
           ctx.stroke();
         }
       };

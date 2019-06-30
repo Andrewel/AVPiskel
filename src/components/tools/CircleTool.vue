@@ -36,6 +36,8 @@ export default {
       // Canvas
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
+      ctx.strokeStyle = document.getElementById('palette1').value;
+      ctx.lineWidth = this.$store.state.BrushSize;
       // Variables
       const canvasx = $(canvas).offset().left;
       const canvasy = $(canvas).offset().top;
@@ -75,8 +77,6 @@ export default {
           ctx.arc(centerx, centery, 1, 0, 2 * Math.PI);
           // Restore and draw
           ctx.restore();
-          ctx.strokeStyle = 'black';
-          ctx.lineWidth = 5;
           ctx.stroke();
         }
       };

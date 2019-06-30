@@ -25,25 +25,25 @@
       <section class="section-left-tools">
         <div class="pen-size-container size-picker-container">
           <ul class="ul-pen-size">
-            <li>
+            <li :class="{ active: this.$store.state.BrushSize === 1 }" @click="ChangeBrushSize(1)">
               <i class="fas fa-square pen-size-option1 size-picker-opt" id="pen-size-option1"></i>
             </li>
-            <li>
+            <li :class="{ active: this.$store.state.BrushSize === 2 }" @click="ChangeBrushSize(2)">
               <i class="fas fa-square pen-size-option2 size-picker-opt" id="pen-size-option2"></i>
             </li>
-            <li>
+            <li :class="{ active: this.$store.state.BrushSize === 4 }" @click="ChangeBrushSize(4)">
               <i class="fas fa-square pen-size-option3 size-picker-opt" id="pen-size-option3"></i>
             </li>
-            <li>
+            <li :class="{ active: this.$store.state.BrushSize === 8 }" @click="ChangeBrushSize(8)">
               <i class="fas fa-square pen-size-option4 size-picker-opt" id="pen-size-option4"></i>
             </li>
           </ul>
         </div>
-        <Pen :SelectedToolId="SelectedToolId"/>
         <ul class="ul-tools">
-          <li id="tool-pen">
+          <!--  <li id="tool-pen">
             <i class="fas fa-pen tool pen-icon" id="pen"></i>
-          </li>
+          </li>-->
+          <Pen :SelectedToolId="SelectedToolId"/>
           <!--  <li id="tool-pencil-alt">
             <i class="fas fa-pencil-alt tool pencil-alt-icon" id="pencil-alt"></i>
           </li>-->
@@ -55,9 +55,9 @@
           <li id="tool-fill">
             <i class="fas fa-fill tool fill-icon" id="fill"></i>
           </li>
-         <!--  <li id="tool-eraser">
+          <!--  <li id="tool-eraser">
             <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
-          </li> -->
+          </li>-->
           <EraserTool/>
           <!-- <li id="tool-pencil-ruler">
             <i class="fas fa-pencil-ruler tool pencil-ruler-icon" id="pencil-ruler"></i>
@@ -89,32 +89,85 @@
           <li id="tool-chess-board">
             <i class="fas fa-chess-board tool chess-board-icon" id="chess-board"></i>
           </li>
-          <!-- <li id="tool-eye-dropper">
-            <i class="fas fa-eye-dropper tool eye-dropper-icon" id="eye-dropper"></i>
-          </li>-->
           <ColorPicker/>
         </ul>
-        <input type="color" id="palette1" value="#808080" style="width:4vw;height: 4vw">
-        <input type="color" id="palette2" value="#808080" style="width:4vw;height: 4vw">
-        <v-bottom-sheet v-model="sheet" class="keyboard-shortcuts">
-          <template v-slot:activator>
-            <i class="fas fa-keyboard tool keyboard-icon" id="keyboard"></i>
+        <input
+          type="color"
+          id="palette1"
+          value="#ffffff"
+          style="width:4vw;height: 4vw"
+          @click="InputColor()"
+        >
+        <input type="color" id="palette2" value="#ff0000" style="width:4vw;height: 4vw">
+        <v-dialog v-model="dialog" width="500">
+          <template v-slot:activator="{ on }">
+            <i v-on="on" class="fas fa-keyboard tool keyboard-icon" id="keyboard"></i>
           </template>
-          <v-list>
-            <v-subheader>Keyboard shortcuts</v-subheader>
-            <v-list-tile v-for="tile in tiles" :key="tile.title" @click="sheet = false">
-              <v-list-tile-avatar>
-                <v-avatar size="32px" tile>
-                  <img
-                    :src="`https://cdn.vuetifyjs.com/images/bottom-sheets/${tile.img}`"
-                    :alt="tile.title"
-                  >
-                </v-avatar>
-              </v-list-tile-avatar>
-              <v-list-tile-title>{{ tile.title }}</v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-        </v-bottom-sheet>
+          <v-card>
+            <v-card-title class="headline grey lighten-2" primary-title>
+              Keyboard shortcuts</v-card-title>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input
+                class="KeyCodePen"
+                v-model.lazy="KeyI"
+                placeholder="width"
+                @keyup.enter="changeKey()"
+                style="width:2.5vw"
+              >
+              Pen tool
+            </span>
+            <br>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              Mirror tool
+            </span>
+            <br>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              Paint bucket tool
+            </span>
+            <br>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              Eraser tool
+            </span>
+            <br>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              Stroke tool
+            </span>
+            <br>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              Rectangle tool
+            </span>
+            <br>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              Circle tool
+            </span>
+            <br>
+            <span>
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              ColorPicker tool
+            </span>
+            <br>
+            <v-divider></v-divider>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" flat @click="dialog = false">Accept</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </section>
       <!-- <section class="frames-tools-wrapper">
         <ul id="frame-list" class="frame-list"></ul>
@@ -201,17 +254,11 @@ export default {
   },
   data() {
     return {
+      KeyI: this.$store.state.KeyCode.KeyI,
+      dialog: false,
       SelectedToolId: 1,
       height: 700,
       width: 700,
-      sheet: false,
-      tiles: [
-        { img: 'keep.png', title: 'Keep' },
-        { img: 'inbox.png', title: 'Inbox' },
-        { img: 'hangouts.png', title: 'Hangouts' },
-        { img: 'messenger.png', title: 'Messenger' },
-        { img: 'google.png', title: 'Google+' },
-      ],
     };
   },
   created() {
@@ -255,6 +302,25 @@ export default {
     );
   },
   methods: {
+    InputColor(){
+      this.$store.state.SelectedTool = 0;
+      document.querySelector('#canvas').onmousedown = null;
+      document.querySelector('#canvas').onmouseup = null;
+      document.querySelector('#canvas').onmouseout = null;
+      document.querySelector('#canvas').onmousemove = null;
+    },
+    ChangeBrushSize(size) {
+      this.$store.state.BrushSize = size;
+      this.$store.state.SelectedTool = 0;
+      document.querySelector('#canvas').onmousedown = null;
+      document.querySelector('#canvas').onmouseup = null;
+      document.querySelector('#canvas').onmouseout = null;
+      document.querySelector('#canvas').onmousemove = null;
+    },
+    changeKey() {
+      this.$store.state.KeyCode.KeyI = this.KeyI;
+      console.log(this.KeyI + this.$store.state.KeyCode.KeyI);
+    },
     changeTool(tool) {
       this.SelectedToolId = tool;
     },
@@ -371,6 +437,9 @@ h2 {
 .tool:hover {
   background-color: black;
 }
+.active {
+  background-color: rgba(255, 252, 80, 1) !important;
+}
 #palette1 {
   position: relative;
   z-index: 1;
@@ -380,7 +449,7 @@ h2 {
   top: 2vw;
   right: 1.5vw;
 }
-.keyboard-shortcuts {
+#keyboard {
   position: relative;
   left: -2.8vw;
   margin-top: 2.5vw;

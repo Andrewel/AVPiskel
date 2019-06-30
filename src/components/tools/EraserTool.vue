@@ -55,21 +55,10 @@ export default {
   },
   methods: {
     setCanvas() {
-      /* document.querySelector('.canvas-wrapper').style.gridTemplateColumns = `${
-        this.width
-      }px 30px`;
-      document.querySelector('.canvas-wrapper').style.width = `${this.width +
-        30}px`;
-      document.querySelector('.canvas-wrapper').style.height = `${
-        this.height
-      }px`; */
-
       this.canvasContext = document.querySelector('#canvas').getContext('2d');
       this.canvasContext.lineJoin = 'round';
       this.canvasContext.lineCap = 'round';
-      this.canvasContext.lineWidth = this.brushSize;
-      this.canvasContext.strokeStyle = this.tools[this.selectedToolIdx].color;
-
+      this.canvasContext.lineWidth = this.$store.state.BrushSize;
       this.cursorContext = document.querySelector('#cursor').getContext('2d');
     },
     bindEvents() {
@@ -100,9 +89,6 @@ export default {
         this.canvasContext.globalCompositeOperation = 'destination-out';
       } else if (this.tools[this.selectedToolIdx].name === 'Pencil') {
         this.canvasContext.globalCompositeOperation = 'source-over';
-        this.canvasContext.strokeStyle = document.getElementById(
-          'palette1',
-        ).value;
       }
 
       this.canvasContext.beginPath();
@@ -144,18 +130,5 @@ export default {
 #cursor {
   z-index: 1;
   pointer-events: none;
-}
-.active {
-  background-color: #dea878 !important;
-}
-.tools {
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  padding: 0;
-}
-.tools li {
-  padding: 3px;
-  background-color: white;
 }
 </style>

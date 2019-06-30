@@ -27,18 +27,18 @@ export default {
       isDrawing: true,
     };
   },
-   created() {
+  created() {
     document.addEventListener('keyup', e => {
-       const KeyV = 86;
+      const KeyV = 86;
 
       if (e.keyCode === KeyV) {
-       this.MirrorPen()
+        this.MirrorPen();
       }
     });
   },
   methods: {
     MirrorPen() {
-      this.$store.state.SelectedTool = 2
+      this.$store.state.SelectedTool = 2;
       let prevX = 0;
       let currX = 0;
       let prevY = 0;
@@ -47,6 +47,9 @@ export default {
 
       const canvas = document.querySelector('#canvas');
       const context = canvas.getContext('2d');
+      context.strokeStyle = document.getElementById('palette1').value;
+      context.lineWidth = this.$store.state.BrushSize;
+      context.lineCap = 'round';
 
       /* canvas.onmousemove = null;
       canvas.onmousedown = null;
@@ -83,10 +86,6 @@ export default {
         let c_ = c;
         const d = currY;
         let d_ = h - d;
-
-        context.strokeStyle = 'black';
-        context.lineWidth = 4;
-        context.lineCap = 'round';
 
         context.beginPath();
 
@@ -177,18 +176,5 @@ export default {
 
 .tool:hover {
   background-color: black;
-}
-.active {
-  background-color: #dea878 !important;
-}
-.tools {
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  padding: 0;
-}
-.tools li {
-  padding: 3px;
-  background-color: white;
 }
 </style>
