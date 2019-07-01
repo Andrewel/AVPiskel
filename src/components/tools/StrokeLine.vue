@@ -37,94 +37,93 @@ export default {
       let ctx = canvas.getContext('2d');
       ctx.strokeStyle = document.getElementById('palette1').value;
       ctx.lineWidth = this.$store.state.BrushSize;
-      let hasLoaded = false;
+      let bounds = canvas.getBoundingClientRect();
+      let hasLoaded = true;
 
       let startX = 0;
       let startY = 0;
       let mouseX = 0;
       let mouseY = 0;
       let isDrawing = false;
-      const existingLines = [];
+      const existingLines = this.$store.state.existingLines;
 
       function draw() {
-        clearCanvas();
-
-        ctx.strokeStyle = document.getElementById('palette1').value;
-
         ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
+
+          ctx.save();
+          ctx.beginPath();
           ctx.moveTo(line.startX, line.startY);
           ctx.lineTo(line.endX, line.endY);
+          ctx.rect(line.last_mouseX, line.last_mouseY, line.width, line.height);
+          ctx.scale(line.scaleX, line.scaleY);
+          ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
+          // Restore and draw
+          ctx.restore();
+          ctx.stroke();
         }
 
+       // clearCanvas(canvas.width, canvas.height);
         ctx.stroke();
-
-        if (isDrawing) {
+        /* if (isDrawing) {
           ctx.beginPath();
           ctx.moveTo(startX, startY);
           ctx.lineTo(mouseX, mouseY);
           ctx.stroke();
-        }
+        } */
       }
 
-      function clearCanvas() {
-        ctx.clearRect(0, 0, 700, 700);
+      function clearCanvas(width, height) {
+        ctx.clearRect(0, 0, width, height);
       }
 
       function onmousedown(e) {
-        if (hasLoaded && e.button === 0) {
-          if (!isDrawing) {
-            startX = e.clientX - bounds.left;
-            startY = e.clientY - bounds.top;
+        if (!isDrawing) {
+          startX = e.clientX - bounds.left;
+          startY = e.clientY - bounds.top;
 
-            isDrawing = true;
-          }
-
-          draw();
+          isDrawing = true;
         }
+
+        //    draw();
       }
 
       function onmouseup(e) {
-        if (hasLoaded && e.button === 0) {
-          if (isDrawing) {
-            existingLines.push({
-              startX,
-              startY,
-              endX: mouseX,
-              endY: mouseY,
-            });
+        if (isDrawing) {
+          existingLines.push({
+            startX,
+            startY,
+            endX: mouseX,
+            endY: mouseY,
+          });
 
-            isDrawing = false;
-          }
+          isDrawing = false;
+        }
 
+        //   draw();
+      }
+
+      function onmousemove(e) {
+        mouseX = e.clientX - bounds.left;
+        mouseY = e.clientY - bounds.top;
+
+        if (isDrawing) {
+          clearCanvas(canvas.width, canvas.height);
+          ctx.beginPath();
+          ctx.moveTo(startX, startY);
+          ctx.lineTo(mouseX, mouseY);
+          ctx.stroke();
           draw();
         }
       }
 
-      function onmousemove(e) {
-        if (hasLoaded) {
-          mouseX = e.clientX - bounds.left;
-          mouseY = e.clientY - bounds.top;
-
-          if (isDrawing) {
-            draw();
-          }
-        }
-      }
-
-      /* canvas.width = canvasWidth;
-      canvas.height = canvasHeight; */
       canvas.onmousedown = onmousedown;
       canvas.onmouseup = onmouseup;
       canvas.onmousemove = onmousemove;
 
-      let bounds = canvas.getBoundingClientRect();
-
-      hasLoaded = true;
-
-      draw();
+      this.$store.state.existingLines = existingLines;
     },
   },
 };

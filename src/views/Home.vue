@@ -107,57 +107,57 @@
             <v-card-title class="headline grey lighten-2" primary-title>
               Keyboard shortcuts</v-card-title>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input
-                class="KeyCodePen"
-                v-model.lazy="KeyI"
-                placeholder="width"
-                @keyup.enter="changeKey()"
-                style="width:2.5vw"
-              >
+              <input class="KeyCodePen" value="I" @keyup.enter="changeKey()" style="width:1vw">
+              <i class="fas fa-pen pen-icon"></i>
               Pen tool
             </span>
             <br>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              <input value="V" style="width:1vw">
+              <i class="fas fa-pencil-alt pencil-alt-icon"></i>
               Mirror tool
             </span>
             <br>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              <input value="B" style="width:1vw">
+              <i class="fas fa-fill-drip fill-drip-icon"></i>
               Paint bucket tool
             </span>
             <br>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              <input value="E" style="width:1vw">
+              <i class="fas fa-eraser eraser-icon"></i>
               Eraser tool
             </span>
             <br>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              <input value="L" style="width:1vw">
+              <i class="fas fa-pencil-ruler pencil-ruler-icon"></i>
               Stroke tool
             </span>
             <br>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              <input value="R" style="width:1vw">
+              <i class="far fa-square square-icon"></i>
               Rectangle tool
             </span>
             <br>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              <input value="C" style="width:1vw">
+              <i class="far fa-circle circle-icon"></i>
               Circle tool
             </span>
             <br>
             <span>
-              <i class="fas fa-keyboard keyboard-icon"></i>
-              <input v-model.lazy="width" placeholder="width" style="width:2.5vw">
+              <input value="P" style="width:1vw">
+              <i class="fas fa-eye-dropper eye-dropper-icon"></i>
               ColorPicker tool
+            </span>
+            <br>
+            <span>
+              <input value="X" style="width:1vw">
+              <i class="fas fa-keyboard keyboard-icon"></i>
+              Swap primary/secondary colors
             </span>
             <br>
             <v-divider></v-divider>
@@ -254,7 +254,7 @@ export default {
   },
   data() {
     return {
-      KeyI: this.$store.state.KeyCode.KeyI,
+      KeyCode: this.$store.state.KeyCode.KeyI,
       dialog: false,
       SelectedToolId: 1,
       height: 700,
@@ -302,7 +302,7 @@ export default {
     );
   },
   methods: {
-    InputColor(){
+    InputColor() {
       this.$store.state.SelectedTool = 0;
       document.querySelector('#canvas').onmousedown = null;
       document.querySelector('#canvas').onmouseup = null;
@@ -318,8 +318,8 @@ export default {
       document.querySelector('#canvas').onmousemove = null;
     },
     changeKey() {
-      this.$store.state.KeyCode.KeyI = this.KeyI;
-      console.log(this.KeyI + this.$store.state.KeyCode.KeyI);
+      this.$store.state.KeyCode.KeyI = this.KeyCode;
+      console.log(this.KeyCode + this.$store.state.KeyCode.KeyI);
     },
     changeTool(tool) {
       this.SelectedToolId = tool;

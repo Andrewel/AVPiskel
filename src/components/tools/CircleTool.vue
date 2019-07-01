@@ -41,45 +41,82 @@ export default {
       // Variables
       const canvasx = $(canvas).offset().left;
       const canvasy = $(canvas).offset().top;
-      let last_mousex = 0;
-      let last_mousey = 0;
-      let mousex = 0;
-      let mousey = 0;
+      let last_mouseX = 0;
+      let last_mouseY = 0;
+      let mouseX = 0;
+      let mouseY = 0;
+      let centerX = 0;
+      let centerY = 0;
+      let scaleX = 0;
+      let scaleY = 0;
       let mousedown = false;
+      let existingLines = this.$store.state.existingLines;
+
+
+      function draw() {
+        ctx.beginPath();
+
+        for (let i = 0; i < existingLines.length; ++i) {
+          const line = existingLines[i];
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(line.startX, line.startY);
+          ctx.lineTo(line.endX, line.endY);
+          ctx.rect(line.last_mouseX, line.last_mouseY, line.width, line.height);
+          ctx.scale(line.scaleX, line.scaleY);
+          ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
+          // Restore and draw
+          ctx.restore();
+          ctx.stroke();
+        }
+
+        ctx.stroke();
+      }
+      function clearCanvas(width, height) {
+        ctx.clearRect(0, 0, width, height);
+      }
 
       canvas.onmousedown = function(e) {
-        last_mousex = e.clientX - canvasx;
-        last_mousey = e.clientY - canvasy;
+        last_mouseX = e.clientX - canvasx;
+        last_mouseY = e.clientY - canvasy;
         mousedown = true;
       };
 
       canvas.onmouseup = function(e) {
+        existingLines.push({
+          centerX,
+          centerY,
+          scaleX,
+          scaleY
+        });
         mousedown = false;
       };
       canvas.onmouseout = function(e) {
         mousedown = false;
       };
       canvas.onmousemove = function(e) {
-        mousex = e.clientX - canvasx;
-        mousey = e.clientY - canvasy;
+        mouseX = e.clientX - canvasx;
+        mouseY = e.clientY - canvasy;
         if (mousedown) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+          clearCanvas(canvas.width, canvas.height); // clear canvas
           // Save
           ctx.save();
           ctx.beginPath();
           // Dynamic scaling
-          const scalex = 1 * ((mousex - last_mousex) / 2);
-          const scaley = 1 * ((mousey - last_mousey) / 2);
-          ctx.scale(scalex, scaley);
+          scaleX = 1 * ((mouseX - last_mouseX) / 2);
+          scaleY = 1 * ((mouseY - last_mouseY) / 2);
+          ctx.scale(scaleX, scaleY);
           // Create ellipse
-          const centerx = last_mousex / scalex + 1;
-          const centery = last_mousey / scaley + 1;
-          ctx.arc(centerx, centery, 1, 0, 2 * Math.PI);
+          centerX = last_mouseX / scaleX + 1;
+          centerY = last_mouseY / scaleY + 1;
+          ctx.arc(centerX, centerY, 1, 0, 2 * Math.PI);
           // Restore and draw
           ctx.restore();
           ctx.stroke();
+          draw();
         }
       };
+      this.$store.state.existingLines = existingLines;
     },
   },
 };

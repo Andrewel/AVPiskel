@@ -40,37 +40,76 @@ export default {
       // Variables
       const canvasx = $(canvas).offset().left;
       const canvasy = $(canvas).offset().top;
-      let last_mousex = 0;
-      let last_mousey = 0;
-      let mousex = 0;
-      let mousey = 0;
+      let last_mouseX = 0;
+      let last_mouseY = 0;
+      let mouseX = 0;
+      let mouseY = 0;
+      let width = 0;
+      let height = 0;
+
       let mousedown = false;
+      let existingLines = this.$store.state.existingLines;
+
+
+      function draw() {
+        ctx.beginPath();
+
+        for (let i = 0; i < existingLines.length; ++i) {
+          const line = existingLines[i];
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(line.startX, line.startY);
+          ctx.lineTo(line.endX, line.endY);
+          ctx.rect(line.last_mouseX, line.last_mouseY, line.width, line.height);
+          ctx.scale(line.scaleX, line.scaleY);
+          ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
+          // Restore and draw
+          ctx.restore();
+          ctx.stroke();
+        }
+
+        ctx.stroke();
+      }
+
+      function clearCanvas(width, height) {
+        ctx.clearRect(0, 0, width, height);
+      }
 
       canvas.onmousedown = function(e) {
-        last_mousex = e.clientX - canvasx;
-        last_mousey = e.clientY - canvasy;
+        last_mouseX = e.clientX - canvasx;
+        last_mouseY = e.clientY - canvasy;
         mousedown = true;
       };
 
       canvas.onmouseup = function(e) {
+
+        existingLines.push({
+          last_mouseX,
+          last_mouseY,
+          width,
+          height,
+        });
         mousedown = false;
       };
       canvas.onmouseout = function(e) {
         mousedown = false;
       };
       canvas.onmousemove = function(e) {
-        mousex = e.clientX - canvasx;
-        mousey = e.clientY - canvasy;
+        mouseX = e.clientX - canvasx;
+        mouseY = e.clientY - canvasy;
         if (mousedown) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas
+          width = mouseX - last_mouseX;
+          height = mouseY - last_mouseY;
+          clearCanvas(canvas.width, canvas.height); // clear canvas
           ctx.beginPath();
-          const width = mousex - last_mousex;
-          const height = mousey - last_mousey;
-          ctx.rect(last_mousex, last_mousey, width, height);
+
+          ctx.rect(last_mouseX, last_mouseY, width, height);
 
           ctx.stroke();
+          draw();
         }
       };
+      this.$store.state.existingLines = existingLines;
     },
   },
 };

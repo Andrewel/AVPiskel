@@ -12,6 +12,7 @@ export default new Vuex.Store({
       KeyV: 86,
       KeyB: 66,
     },
+    existingLines: [],
   },
   mutations: {
 

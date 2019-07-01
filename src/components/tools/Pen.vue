@@ -43,9 +43,6 @@ export default {
   },
   mounted() {
     document.addEventListener('keyup', e => {
-      //  let KeyI = this.$store.state.KeyCode.KeyI;
-      // const KeyI = document.querySelector('.KeyCodePen').value;
-      // console.log(document.querySelector('.KeyCodePen').value)
       if (e.keyCode === this.KeyI) {
         this.bindEvents();
       }
