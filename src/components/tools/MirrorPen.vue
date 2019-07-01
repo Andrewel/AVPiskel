@@ -29,9 +29,7 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyV = 86;
-
-      if (e.keyCode === KeyV) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyVPen)) {
         this.MirrorPen();
       }
     });

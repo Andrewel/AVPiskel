@@ -23,9 +23,8 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyP = 80;
 
-      if (e.keyCode === KeyP) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyPicker)) {
         this.ColorPicker2();
       }
     });

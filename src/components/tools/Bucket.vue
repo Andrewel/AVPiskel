@@ -23,9 +23,8 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyB = 66;
 
-      if (e.keyCode === KeyB) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyBucket)) {
         this.Bucket();
       }
     });

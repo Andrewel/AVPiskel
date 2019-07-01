@@ -104,33 +104,43 @@
             <i v-on="on" class="fas fa-keyboard tool keyboard-icon" id="keyboard"></i>
           </template>
           <v-card>
-            <v-card-title class="headline grey lighten-2"
-             primary-title>Keyboard shortcuts</v-card-title>
+            <v-card-title class="headline grey lighten-2" primary-title>
+              Keyboard shortcuts</v-card-title>
             <span>
-              <input
-                class="input-KeyPen"
-                value="I"
-                @keyup.enter="changeKeyPen()"
-                style="width:1vw"
-              >
+              <input class="input-KeyPen" value="I" @keyup.enter="changeKeyPen()" style="width:1vw">
               <i class="fas fa-pen pen-icon"></i>
               Pen tool
             </span>
             <br>
             <span>
-              <input value="V" @keyup.enter="changeKeyVPen()" style="width:1vw">
+              <input
+                class="input-KeyVPen"
+                value="V"
+                @keyup.enter="changeKeyVPen()"
+                style="width:1vw"
+              >
               <i class="fas fa-pencil-alt pencil-alt-icon"></i>
               Mirror tool
             </span>
             <br>
             <span>
-              <input value="B" @keyup.enter="changeKeyBucket()" style="width:1vw">
+              <input
+                class="input-KeyBucket"
+                value="B"
+                @keyup.enter="changeKeyBucket()"
+                style="width:1vw"
+              >
               <i class="fas fa-fill-drip fill-drip-icon"></i>
               Paint bucket tool
             </span>
             <br>
             <span>
-              <input value="E" @keyup.enter="changeKeyEraser()" style="width:1vw">
+              <input
+                class="input-KeyEraser"
+                value="E"
+                @keyup.enter="changeKeyEraser()"
+                style="width:1vw"
+              >
               <i class="fas fa-eraser eraser-icon"></i>
               Eraser tool
             </span>
@@ -147,25 +157,45 @@
             </span>
             <br>
             <span>
-              <input value="R" @keyup.enter="changeKeyRectangle()" style="width:1vw">
+              <input
+                class="input-KeyRectangle"
+                value="R"
+                @keyup.enter="changeKeyRectangle()"
+                style="width:1vw"
+              >
               <i class="far fa-square square-icon"></i>
               Rectangle tool
             </span>
             <br>
             <span>
-              <input value="C" @keyup.enter="changeKeyCircle()" style="width:1vw">
+              <input
+                class="input-KeyCircle"
+                value="C"
+                @keyup.enter="changeKeyCircle()"
+                style="width:1vw"
+              >
               <i class="far fa-circle circle-icon"></i>
               Circle tool
             </span>
             <br>
             <span>
-              <input value="P" @keyup.enter="changeKeyPicker()" style="width:1vw">
+              <input
+                class="input-KeyPicker"
+                value="P"
+                @keyup.enter="changeKeyPicker()"
+                style="width:1vw"
+              >
               <i class="fas fa-eye-dropper eye-dropper-icon"></i>
               ColorPicker tool
             </span>
             <br>
             <span>
-              <input value="X" @keyup.enter="changeKeyKeyboard()" style="width:1vw">
+              <input
+                class="input-KeyKeyboard"
+                value="X"
+                @keyup.enter="changeKeyKeyboard()"
+                style="width:1vw"
+              >
               <i class="fas fa-keyboard keyboard-icon"></i>
               Swap primary/secondary colors
             </span>
@@ -256,7 +286,7 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-    //  console.log(e.KeyCode)
+      //  console.log(e.KeyCode)
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyKeyboard)) {
         let value = document.getElementById('palette1').value;
         document.getElementById('palette1').value = document.getElementById(
@@ -323,33 +353,82 @@ export default {
       document.querySelector('#canvas').onmouseout = null;
       document.querySelector('#canvas').onmousemove = null;
     },
+    changeKeyDuplicates(key) {
+      if (
+        this.$store.state.KeyCode.KeyPen === key.toUpperCase().charCodeAt(0)
+      ) {
+        document.querySelector('.input-KeyPen').value = '';
+        this.$store.state.KeyCode.KeyPen = '';
+      } else if (this.$store.state.KeyCode.KeyVPen === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyVPen').value = '';
+        this.$store.state.KeyCode.KeyVPen = '';
+      } else if (this.$store.state.KeyCode.KeyEraser === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyEraser').value = '';
+        this.$store.state.KeyCode.KeyEraser = '';
+      } else if (this.$store.state.KeyCode.KeyPicker === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyPicker').value = '';
+        this.$store.state.KeyCode.KeyPen = '';
+      } else if (this.$store.state.KeyCode.KeyRectangle === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyRectangle').value = '';
+        this.$store.state.KeyCode.KeyRectangle = '';
+      } else if (this.$store.state.KeyCode.KeyCircle === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyCircle').value = '';
+        this.$store.state.KeyCode.KeyCircle = '';
+      } else if (this.$store.state.KeyCode.KeyStroke === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyStroke').value = '';
+        this.$store.state.KeyCode.KeyStroke = '';
+      } else if (this.$store.state.KeyCode.KeyBucket === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyBucket').value = '';
+        this.$store.state.KeyCode.KeyBucket = '';
+      } else if (this.$store.state.KeyCode.KeyKeyboard === key.toUpperCase().charCodeAt(0)) {
+        document.querySelector('.input-KeyKeyboard').value = '';
+        this.$store.state.KeyCode.KeyKeyboard = '';
+      }
+    },
     changeKeyPen() {
-      let key = document.querySelector('.input-KeyPen').value
+      let key = document.querySelector('.input-KeyPen').value;
+      this.changeKeyDuplicates(key);
       this.$store.state.KeyCode.KeyPen = key.toUpperCase().charCodeAt(0);
     },
     changeKeyVPen() {
-      this.$store.state.KeyCode.KeyVPen = this.KeyCode;
+      let key = document.querySelector('.input-KeyVPen').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyVPen = key.toUpperCase().charCodeAt(0);
     },
     changeKeyEraser() {
-      this.$store.state.KeyCode.KeyEraser = this.KeyCode;
+      let key = document.querySelector('.input-KeyEraser').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyEraser = key.toUpperCase().charCodeAt(0);
     },
     changeKeyPicker() {
-      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+      let key = document.querySelector('.input-KeyPicker').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyPicker = key.toUpperCase().charCodeAt(0);
     },
     changeKeyRectangle() {
-      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+      let key = document.querySelector('.input-KeyRectangle').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyRectangle = key.toUpperCase().charCodeAt(0);
     },
     changeKeyCircle() {
-      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+      let key = document.querySelector('.input-KeyCircle').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyCircle = key.toUpperCase().charCodeAt(0);
     },
     changeKeyStroke() {
-      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+      let key = document.querySelector('.input-KeyStroke').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyStroke = key.toUpperCase().charCodeAt(0);
     },
     changeKeyBucket() {
-      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+      let key = document.querySelector('.input-KeyBucket').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyBucket = key.toUpperCase().charCodeAt(0);
     },
     changeKeyKeyboard() {
-      this.$store.state.KeyCode.KeyKeyboard = this.KeyCode;
+      let key = document.querySelector('.input-KeyKeyboard').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyKeyboard = key.toUpperCase().charCodeAt(0);
     },
     changeTool(tool) {
       this.SelectedToolId = tool;

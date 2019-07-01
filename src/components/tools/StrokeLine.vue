@@ -23,9 +23,8 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyL = 76;
 
-      if (e.keyCode === KeyL) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyStroke)) {
         this.StrokeLine();
       }
     });

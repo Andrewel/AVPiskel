@@ -24,7 +24,6 @@ export default {
   },
   data() {
     return {
-      KeyPen: this.$store.state.KeyCode.KeyPen,
       canvasContext: null,
       cursorContext: null,
       isDrawing: false,

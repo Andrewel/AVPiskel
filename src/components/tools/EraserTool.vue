@@ -46,9 +46,8 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyE = 69;
 
-      if (e.keyCode === KeyE) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyEraser)) {
         this.bindEvents();
       }
     });

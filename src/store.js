@@ -15,7 +15,8 @@ export default new Vuex.Store({
       KeyPicker: 80, // P
       KeyEraser: 69, // E
       KeyRectangle: 82, // R
-      KeyCircle: 67, // C
+      KeyCircle: 67,
+      KeyStroke: 76, // C
     },
     existingLines: [],
   },

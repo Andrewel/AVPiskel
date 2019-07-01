@@ -23,9 +23,8 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyR = 82;
 
-      if (e.keyCode === KeyR) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyRectangle)) {
         this.Rectangle();
       }
     });

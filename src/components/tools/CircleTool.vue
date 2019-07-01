@@ -23,9 +23,8 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyC = 67;
 
-      if (e.keyCode === KeyC) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyCircle)) {
         this.CircleTool();
       }
     });
