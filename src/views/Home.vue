@@ -2,7 +2,7 @@
   <div class="home">
     <v-toolbar>
       <v-toolbar-side-icon></v-toolbar-side-icon>
-      <v-toolbar-title>PISKEL</v-toolbar-title>
+      <v-toolbar-title>PISKEL by Andrewel</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat @click="likes()">My Gallery</v-btn>
@@ -99,7 +99,7 @@
           @click="InputColor()"
         >
         <input type="color" id="palette2" value="#ff0000" style="width:4vw;height: 4vw">
-        <v-dialog v-model="dialog" width="500">
+        <v-dialog style="text-align: left" v-model="dialog" width="500">
           <template v-slot:activator="{ on }">
             <i v-on="on" class="fas fa-keyboard tool keyboard-icon" id="keyboard"></i>
           </template>
@@ -107,55 +107,67 @@
             <v-card-title class="headline grey lighten-2" primary-title>
               Keyboard shortcuts</v-card-title>
             <span>
-              <input class="KeyCodePen" value="I" @keyup.enter="changeKey()" style="width:1vw">
+              <input
+                value="I"
+                @keyup.enter="changeKeyPen()"
+                style="width:1vw"
+              >
               <i class="fas fa-pen pen-icon"></i>
               Pen tool
             </span>
             <br>
             <span>
-              <input value="V" style="width:1vw">
+              <input
+                value="V"
+                @keyup.enter="changeKeyVPen()"
+                style="width:1vw"
+              >
               <i class="fas fa-pencil-alt pencil-alt-icon"></i>
               Mirror tool
             </span>
             <br>
             <span>
-              <input value="B" style="width:1vw">
+              <input
+                value="B"
+                @keyup.enter="changeKeyBucket()"
+                style="width:1vw"
+              >
               <i class="fas fa-fill-drip fill-drip-icon"></i>
               Paint bucket tool
             </span>
             <br>
             <span>
-              <input value="E" style="width:1vw">
+              <input value="E"  @keyup.enter="changeKeyEraser()" style="width:1vw">
               <i class="fas fa-eraser eraser-icon"></i>
               Eraser tool
             </span>
             <br>
             <span>
-              <input value="L" style="width:1vw">
+              <input value="L"  @keyup.enter="changeKeyStroke()" style="width:1vw">
               <i class="fas fa-pencil-ruler pencil-ruler-icon"></i>
               Stroke tool
             </span>
             <br>
             <span>
-              <input value="R" style="width:1vw">
+              <input value="R"  @keyup.enter="changeKeyRectangle()" style="width:1vw">
               <i class="far fa-square square-icon"></i>
               Rectangle tool
             </span>
             <br>
             <span>
-              <input value="C" style="width:1vw">
+              <input value="C"  @keyup.enter="changeKeyCircle()" style="width:1vw">
               <i class="far fa-circle circle-icon"></i>
               Circle tool
             </span>
             <br>
             <span>
-              <input value="P" style="width:1vw">
+              <input value="P"  @keyup.enter="changeKeyPicker()" style="width:1vw">
               <i class="fas fa-eye-dropper eye-dropper-icon"></i>
               ColorPicker tool
             </span>
             <br>
             <span>
-              <input value="X" style="width:1vw">
+              <input value="X" @keyup.enter="changeKeyKeyboard()" style="width:1vw">
               <i class="fas fa-keyboard keyboard-icon"></i>
               Swap primary/secondary colors
             </span>
@@ -254,7 +266,7 @@ export default {
   },
   data() {
     return {
-      KeyCode: this.$store.state.KeyCode.KeyI,
+      KeyCode: 0,
       dialog: false,
       SelectedToolId: 1,
       height: 700,
@@ -263,9 +275,7 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-      const KeyX = 88;
-
-      if (e.keyCode === KeyX) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyKeyboard)) {
         let value = document.getElementById('palette1').value;
         document.getElementById('palette1').value = document.getElementById(
           'palette2',
@@ -302,6 +312,20 @@ export default {
     );
   },
   methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace('login');
+        });
+    },
+    profile() {
+      this.$router.replace('profile');
+    },
+    likes() {
+      this.$router.replace('likes');
+    },
     InputColor() {
       this.$store.state.SelectedTool = 0;
       document.querySelector('#canvas').onmousedown = null;
@@ -317,26 +341,35 @@ export default {
       document.querySelector('#canvas').onmouseout = null;
       document.querySelector('#canvas').onmousemove = null;
     },
-    changeKey() {
-      this.$store.state.KeyCode.KeyI = this.KeyCode;
-      console.log(this.KeyCode + this.$store.state.KeyCode.KeyI);
+    changeKeyPen() {
+      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+    },
+    changeKeyVPen() {
+      this.$store.state.KeyCode.KeyVPen = this.KeyCode;
+    },
+    changeKeyEraser() {
+      this.$store.state.KeyCode.KeyEraser = this.KeyCode;
+    },
+    changeKeyPicker() {
+      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+    },
+    changeKeyRectangle() {
+      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+    },
+    changeKeyCircle() {
+      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+    },
+    changeKeyStroke() {
+      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+    },
+    changeKeyBucket() {
+      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+    },
+    changeKeyKeyboard() {
+      this.$store.state.KeyCode.KeyKeyboard = this.KeyCode;
     },
     changeTool(tool) {
       this.SelectedToolId = tool;
-    },
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace('login');
-        });
-    },
-    profile() {
-      this.$router.replace('profile');
-    },
-    likes() {
-      this.$router.replace('likes');
     },
   },
 };
@@ -573,9 +606,10 @@ h2 {
   background-image: url(../assets/images/midle.png);
 }
 
-.preview-canvas {
+.preview-canvas:fullscreen {
   background-position: center;
-  background-size: 100%;
+  background-size: 60%;
+  background-color: rgb(87, 81, 81);
 }
 
 .input-fps {

@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      KeyI: this.$store.state.KeyCode.KeyI,
+      KeyPen: this.$store.state.KeyCode.KeyPen,
       canvasContext: null,
       cursorContext: null,
       isDrawing: false,
@@ -43,7 +43,7 @@ export default {
   },
   mounted() {
     document.addEventListener('keyup', e => {
-      if (e.keyCode === this.KeyI) {
+      if (e.keyCode === parseInt(this.KeyPen)) {
         this.bindEvents();
       }
     });

@@ -65,14 +65,8 @@ export default {
           ctx.stroke();
         }
 
-       // clearCanvas(canvas.width, canvas.height);
         ctx.stroke();
-        /* if (isDrawing) {
-          ctx.beginPath();
-          ctx.moveTo(startX, startY);
-          ctx.lineTo(mouseX, mouseY);
-          ctx.stroke();
-        } */
+
       }
 
       function clearCanvas(width, height) {
@@ -87,7 +81,6 @@ export default {
           isDrawing = true;
         }
 
-        //    draw();
       }
 
       function onmouseup(e) {
@@ -102,7 +95,6 @@ export default {
           isDrawing = false;
         }
 
-        //   draw();
       }
 
       function onmousemove(e) {

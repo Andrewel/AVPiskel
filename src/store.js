@@ -8,9 +8,14 @@ export default new Vuex.Store({
     BrushSize: 1,
     SelectedTool: 0,
     KeyCode: {
-      KeyI: 73,
-      KeyV: 86,
-      KeyB: 66,
+      KeyPen: 73, // I
+      KeyVPen: 86, // V
+      KeyBucket: 66, // B
+      KeyKeyboard: 88, // X
+      KeyPicker: 80, // P
+      KeyEraser: 69, // E
+      KeyRectangle: 82, // R
+      KeyCircle: 67, // C
     },
     existingLines: [],
   },

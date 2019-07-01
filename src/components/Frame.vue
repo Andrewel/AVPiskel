@@ -1,19 +1,16 @@
 <template>
   <section class="frames-tools-wrapper">
     <ul id="frame-list" class="frame-list">
-      <li class="frame" draggable="true">
+     <!--  <li class="frame" draggable="true">
        <span>A</span>
       </li>
       <li class="frame" draggable="true">
         <span>B</span>
-      </li>
-      <li class="frame" draggable="true">
-        <span>C</span>
-      </li>
+      </li> -->
     </ul>
 
     <!-- <ul id="frame-list" class="frame-list"></ul> -->
-    <button id="add-frame-button" class="add-frame-button" @dblclick="DragFunc()">
+    <button id="add-frame-button" class="add-frame-button" @click="DragFunc()">
       <i class="fas fa-plus" style="color: white;font-size:2rem;margin-right: 10px"></i>Add new
       <br>frame
     </button>
@@ -39,7 +36,7 @@ export default {
   },
   methods: {
     DragFunc() {
-      var dragSrcEl = null;
+      let dragSrcEl = null;
 
       function handleDragStart(e) {
         // Target (this) element is the source node.
@@ -78,14 +75,10 @@ export default {
 
         // Don't do anything if dropping the same column we're dragging.
         if (dragSrcEl != this) {
-          // Set the source column's HTML to the HTML of the column we dropped on.
-          //alert(this.outerHTML);
-          //dragSrcEl.innerHTML = this.innerHTML;
-          //this.innerHTML = e.dataTransfer.getData('text/html');
           this.parentNode.removeChild(dragSrcEl);
-          var dropHTML = e.dataTransfer.getData('text/html');
+          let dropHTML = e.dataTransfer.getData('text/html');
           this.insertAdjacentHTML('beforebegin', dropHTML);
-          var dropElem = this.previousSibling;
+          let dropElem = this.previousSibling;
           addDnDHandlers(dropElem);
         }
         this.classList.remove('over');
@@ -110,10 +103,7 @@ export default {
         elem.addEventListener('dragend', handleDragEnd, false);
       }
 
-      /*  var cols = document.querySelectorAll('#columns .column');
-      [].forEach.call(cols, addDnDHandlers); */
-
-      var cols = document.querySelectorAll('#frame-list .frame');
+      let cols = document.querySelectorAll('#frame-list li');
       [].forEach.call(cols, addDnDHandlers);
     },
     Frame() {
@@ -139,7 +129,7 @@ export default {
         for (let i = 0; i < frames.length; i += 1) {
           frames[i].addEventListener('click', frameChoose, false);
         }
-        clearCanvas();
+        clearCanvas(mainCanvas.width,mainCanvas.height);
       };
       const frameChoose = function(e) {
         const frames = document.querySelectorAll(`.${e.target.className}`);
@@ -148,8 +138,6 @@ export default {
         }
         document.querySelector(`#${e.target.id}`).style.border =
           '3px solid yellow';
-        /*  mainCanvas.style.backgroundImage =
-          storage[e.target.id.replace(/^\D+/g, '') - 1]; */
         mainCanvas.style.backgroundImage = document.querySelector(
           `#${e.target.id}`,
         ).style.backgroundImage;
@@ -215,16 +203,16 @@ export default {
         toggleFullScreen();
       });
 
-      function clearCanvas() {
-        canvas.context.clearRect(0, 0, 700, 700);
+      function clearCanvas(width,height) {
+        canvas.context.clearRect(0, 0, width, height);
       }
       function createFrame(frameIndex, img) {
         const listItem = document.createElement('li');
-        listItem.className = 'frame';
+        /* listItem.className = 'frame'; */
         listItem.setAttribute('draggable', true);
         framesList.appendChild(listItem);
         const frameDiv = document.createElement('div');
-        //frameDiv.className = 'frame';
+        frameDiv.className = 'frame';
         frameDiv.id = `frame${frameIndex}`;
         listItem.appendChild(frameDiv);
 
@@ -257,7 +245,7 @@ export default {
         });
         frameDiv.appendChild(copyFrameButton);
 
-        listItem.style.backgroundImage = `url(${img})`;
+        frameDiv.style.backgroundImage = `url(${img})`;
         storage.push(`url(${img})`);
       }
 

@@ -1,12 +1,8 @@
 <template>
   <div id="animated-preview-container" class="preview-container">
     <div class="preview-canvas-wrapper">
-      <canvas
-        id="preview-canvas"
-        class="preview-canvas"
-        width="200"
-        height="200"
-      ></canvas>
+      <i class="fas fa-compress circle-compress"></i>
+      <canvas id="preview-canvas" class="preview-canvas" width="200" height="200"></canvas>
     </div>
     <form name="fpsForm">
       <output class="output-fps" id="output-fps" name="fpsOutput">10</output>
@@ -36,11 +32,21 @@ export default {
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
 
 <style>
+.circle-compress {
+  position:absolute;
+  left: 15.5vw;
+  /* padding: relative;
+  margin: auto 90%; */
+  color: white;
+  font-size: 20px;
+  text-align: left;
+  z-index: 3;
+}
 .canvas-tools-wrapper {
   position: absolute;
   left: 80vw;
