@@ -43,7 +43,7 @@ export default {
   },
   mounted() {
     document.addEventListener('keyup', e => {
-      if (e.keyCode === parseInt(this.KeyPen)) {
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyPen)) {
         this.bindEvents();
       }
     });

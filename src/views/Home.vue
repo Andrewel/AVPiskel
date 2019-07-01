@@ -104,10 +104,11 @@
             <i v-on="on" class="fas fa-keyboard tool keyboard-icon" id="keyboard"></i>
           </template>
           <v-card>
-            <v-card-title class="headline grey lighten-2" primary-title>
-              Keyboard shortcuts</v-card-title>
+            <v-card-title class="headline grey lighten-2"
+             primary-title>Keyboard shortcuts</v-card-title>
             <span>
               <input
+                class="input-KeyPen"
                 value="I"
                 @keyup.enter="changeKeyPen()"
                 style="width:1vw"
@@ -117,51 +118,48 @@
             </span>
             <br>
             <span>
-              <input
-                value="V"
-                @keyup.enter="changeKeyVPen()"
-                style="width:1vw"
-              >
+              <input value="V" @keyup.enter="changeKeyVPen()" style="width:1vw">
               <i class="fas fa-pencil-alt pencil-alt-icon"></i>
               Mirror tool
             </span>
             <br>
             <span>
-              <input
-                value="B"
-                @keyup.enter="changeKeyBucket()"
-                style="width:1vw"
-              >
+              <input value="B" @keyup.enter="changeKeyBucket()" style="width:1vw">
               <i class="fas fa-fill-drip fill-drip-icon"></i>
               Paint bucket tool
             </span>
             <br>
             <span>
-              <input value="E"  @keyup.enter="changeKeyEraser()" style="width:1vw">
+              <input value="E" @keyup.enter="changeKeyEraser()" style="width:1vw">
               <i class="fas fa-eraser eraser-icon"></i>
               Eraser tool
             </span>
             <br>
             <span>
-              <input value="L"  @keyup.enter="changeKeyStroke()" style="width:1vw">
+              <input
+                class="input-KeyStroke"
+                value="L"
+                @keyup.enter="changeKeyStroke()"
+                style="width:1vw"
+              >
               <i class="fas fa-pencil-ruler pencil-ruler-icon"></i>
               Stroke tool
             </span>
             <br>
             <span>
-              <input value="R"  @keyup.enter="changeKeyRectangle()" style="width:1vw">
+              <input value="R" @keyup.enter="changeKeyRectangle()" style="width:1vw">
               <i class="far fa-square square-icon"></i>
               Rectangle tool
             </span>
             <br>
             <span>
-              <input value="C"  @keyup.enter="changeKeyCircle()" style="width:1vw">
+              <input value="C" @keyup.enter="changeKeyCircle()" style="width:1vw">
               <i class="far fa-circle circle-icon"></i>
               Circle tool
             </span>
             <br>
             <span>
-              <input value="P"  @keyup.enter="changeKeyPicker()" style="width:1vw">
+              <input value="P" @keyup.enter="changeKeyPicker()" style="width:1vw">
               <i class="fas fa-eye-dropper eye-dropper-icon"></i>
               ColorPicker tool
             </span>
@@ -181,13 +179,6 @@
           </v-card>
         </v-dialog>
       </section>
-      <!-- <section class="frames-tools-wrapper">
-        <ul id="frame-list" class="frame-list"></ul>
-        <button id="add-frame-button" class="add-frame-button">
-          <i class="fas fa-plus" style="color: white;font-size:2rem;margin-right: 10px"></i>Add new
-          <br>frame
-        </button>
-      </section>-->
       <Frame/>
       <div class="main-canvas-wrapper">
         <CanvasDraw :width="width" :height="height"/>
@@ -196,25 +187,6 @@
         </div>-->
       </div>
       <section class="canvas-tools-wrapper">
-        <!-- <div id="animated-preview-container" class="preview-container">
-          <div class="preview-canvas-wrapper">
-            <canvas id="preview-canvas" class="preview-canvas" width="200" height="200"></canvas>
-          </div>
-          <form name="fpsForm">
-            <output class="output-fps" id="output-fps" name="fpsOutput">10</output>
-            <span>FPS</span>
-            <input
-              class="input-fps"
-              id="fps"
-              type="range"
-              name="fpsInput"
-              value="10"
-              min="1"
-              max="24"
-            >
-            <canvas id="canvas"></canvas>
-          </form>
-        </div>-->
         <Animation/>
         <section class="section-download">
           <ul class="ul-download">
@@ -266,7 +238,16 @@ export default {
   },
   data() {
     return {
-      KeyCode: 0,
+      KeyCode: {
+        KeyPen: 'P', // I
+        KeyVPen: 86, // V
+        KeyBucket: 66, // B
+        KeyKeyboard: 88, // X
+        KeyPicker: 80, // P
+        KeyEraser: 69, // E
+        KeyRectangle: 82, // R
+        KeyCircle: 67, // C
+      },
       dialog: false,
       SelectedToolId: 1,
       height: 700,
@@ -275,6 +256,7 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
+    //  console.log(e.KeyCode)
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyKeyboard)) {
         let value = document.getElementById('palette1').value;
         document.getElementById('palette1').value = document.getElementById(
@@ -342,7 +324,8 @@ export default {
       document.querySelector('#canvas').onmousemove = null;
     },
     changeKeyPen() {
-      this.$store.state.KeyCode.KeyPen = this.KeyCode;
+      let key = document.querySelector('.input-KeyPen').value
+      this.$store.state.KeyCode.KeyPen = key.toUpperCase().charCodeAt(0);
     },
     changeKeyVPen() {
       this.$store.state.KeyCode.KeyVPen = this.KeyCode;
