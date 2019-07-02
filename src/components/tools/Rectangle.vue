@@ -54,7 +54,6 @@ export default {
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
           ctx.strokeStyle = line.colorRectangle;
-          console.log(ctx.strokeStyle);
           ctx.save();
           ctx.beginPath();
           ctx.moveTo(line.startX, line.startY);
@@ -99,6 +98,7 @@ export default {
           width = mouseX - last_mouseX;
           height = mouseY - last_mouseY;
           clearCanvas(canvas.width, canvas.height); // clear canvas
+          ctx.strokeStyle = document.getElementById('palette1').value
           ctx.beginPath();
 
           ctx.rect(last_mouseX, last_mouseY, width, height);

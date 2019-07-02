@@ -57,6 +57,7 @@ export default {
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
+          ctx.strokeStyle = line.colorRectangle;
           ctx.save();
           ctx.beginPath();
           ctx.moveTo(line.startX, line.startY);
@@ -87,7 +88,8 @@ export default {
           centerX,
           centerY,
           scaleX,
-          scaleY
+          scaleY,
+          colorCircle: document.getElementById('palette1').value
         });
         mousedown = false;
       };
@@ -99,6 +101,7 @@ export default {
         mouseY = e.clientY - canvasy;
         if (mousedown) {
           clearCanvas(canvas.width, canvas.height); // clear canvas
+          ctx.strokeStyle = document.getElementById('palette1').value;
           // Save
           ctx.save();
           ctx.beginPath();

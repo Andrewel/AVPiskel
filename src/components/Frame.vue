@@ -23,7 +23,6 @@ export default {
   },
   mounted() {
     this.Frame();
-    this.DragFunc();
   },
   methods: {
     DragFunc() {
@@ -98,7 +97,6 @@ export default {
       [].forEach.call(cols, addDnDHandlers);
     },
     Frame() {
-      this.DragFunc()
       const addFrameButton = document.querySelector('#add-frame-button');
       const framesList = document.querySelector('#frame-list');
       const mainCanvas = document.querySelector('#canvas');
@@ -117,13 +115,13 @@ export default {
         const img = mainCanvas.toDataURL();
         createFrame(frameIndex, img);
 
-        const frames = document.querySelectorAll('.frame');
+        /* const frames = document.querySelectorAll('.frame');
         for (let i = 0; i < frames.length; i += 1) {
           frames[i].addEventListener('click', frameChoose, false);
-        }
+        } */
         clearCanvas(mainCanvas.width, mainCanvas.height);
       };
-      const frameChoose = function(e) {
+      /* const frameChoose = function(e) {
         const frames = document.querySelectorAll(`.${e.target.className}`);
         for (const frame of frames) {
           frame.style.border = '3px solid gray';
@@ -133,7 +131,7 @@ export default {
         mainCanvas.style.backgroundImage = document.querySelector(
           `#${e.target.id}`,
         ).style.backgroundImage;
-      };
+      }; */
 
       const canvas = {
         paintingAllowed: false,
@@ -170,16 +168,79 @@ export default {
         updateFrames();
       }
 
-      function DragFrame(frame) {
-        let frameIndex = frame.childNodes[0].childNodes[0].textContent - 1;
-        const img = storage[frameIndex];
-        storage.splice(frameIndex - 2, 0, img);
-        createFrame(frameIndex, img);
-        //
-        /* storage.splice(frameIndex, 1);
-          frame.remove(); */
+      function DragFunc(){
+      let dragSrcEl = null;
 
-        //
+      function handleDragStart(e) {
+        // Target (this) element is the source node.
+        dragSrcEl = this;
+
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', this.outerHTML);
+
+        this.classList.add('dragElem');
+      }
+      function handleDragOver(e) {
+        if (e.preventDefault) {
+          e.preventDefault(); // Necessary. Allows us to drop.
+        }
+        this.classList.add('over');
+
+        e.dataTransfer.dropEffect = 'move'; // See the section on the DataTransfer object.
+
+        return false;
+      }
+
+      function handleDragEnter(e) {
+        // this / e.target is the current hover target.
+      }
+
+      function handleDragLeave(e) {
+        this.classList.remove('over'); // this / e.target is previous target element.
+      }
+
+      function handleDrop(e) {
+        // this/e.target is current target element.
+
+        if (e.stopPropagation) {
+          e.stopPropagation(); // Stops some browsers from redirecting.
+        }
+
+        // Don't do anything if dropping the same column we're dragging.
+        if (dragSrcEl != this) {
+          this.parentNode.removeChild(dragSrcEl);
+          let dropHTML = e.dataTransfer.getData('text/html');
+          this.insertAdjacentHTML('beforebegin', dropHTML);
+          let dropElem = this.previousSibling;
+          addDnDHandlers(dropElem);
+        }
+        this.classList.remove('over');
+        return false;
+      }
+
+      function handleDragEnd(e) {
+        // this/e.target is the source node.
+        this.classList.remove('over');
+
+        /*[].forEach.call(cols, function (col) {
+    col.classList.remove('over');
+  });*/
+      }
+
+      function addDnDHandlers(elem) {
+        elem.addEventListener('dragstart', handleDragStart, false);
+        elem.addEventListener('dragenter', handleDragEnter, false);
+        elem.addEventListener('dragover', handleDragOver, false);
+        elem.addEventListener('dragleave', handleDragLeave, false);
+        elem.addEventListener('drop', handleDrop, false);
+        elem.addEventListener('dragend', handleDragEnd, false);
+      }
+
+      let cols = document.querySelectorAll('#frame-list li');
+      [].forEach.call(cols, addDnDHandlers);
+      }
+      function DragFrame(frame) {
+        DragFunc()
         updateFrames();
       }
 
@@ -253,7 +314,6 @@ export default {
         }
       }
       animate();
-      this.DragFunc()
     },
   },
 };

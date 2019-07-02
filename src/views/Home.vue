@@ -272,9 +272,22 @@ export default {
     };
   },
   created() {
-    if(true){
-
+   /*  if (localStorage.getItem(`CurrentColor`) !== null) {
+      document.querySelector(
+        '#CurrentColor',
+      ).style.backgroundColor = localStorage.getItem('CurrentColor');
+      document.querySelector(
+        '#prev',
+      ).style.backgroundColor = localStorage.getItem('PrevColor');
     }
+    if (localStorage.getItem(`PaletteIcon`) !== null) {
+      document.querySelector('#iconPalette').style.color = localStorage.getItem(
+        `PaletteIcon`,
+      );
+      document.querySelector('#palette').value = localStorage.getItem(
+        `PaletteIcon`,
+      );
+    } */
     document.addEventListener('keyup', e => {
       //  console.log(e.KeyCode)
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyKeyboard)) {
