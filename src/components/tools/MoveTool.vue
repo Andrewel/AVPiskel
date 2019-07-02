@@ -1,17 +1,17 @@
 <template>
   <li
-    id="tool-square"
-    :class="{ active: this.$store.state.SelectedTool === 7 }"
-    @click="Rectangle()"
+    id="tool-hand-paper"
+    :class="{ active: this.$store.state.SelectedTool === 9 }"
+    @click="MoveTool()"
   >
-    <i class="far fa-square tool square-icon" id="square"></i>
+    <i class="fas fa-hand-paper tool hand-paper-icon" id="hand-paper"></i>
   </li>
 </template>
 
 <script>
 /* eslint-disable */
 export default {
-  name: 'Rectangle',
+  name: 'MoveTool',
   props: {
     isActive: {
       type: Boolean,
@@ -23,15 +23,14 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-
-      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyRectangle)) {
-        this.Rectangle();
+      if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyMove)) {
+        this.MoveTool();
       }
     });
   },
   methods: {
-    Rectangle() {
-      this.$store.state.SelectedTool = 7;
+    MoveTool() {
+      this.$store.state.SelectedTool = 9;
       const canvas = document.getElementById('canvas');
       const ctx = canvas.getContext('2d');
       ctx.strokeStyle = document.getElementById('palette1').value;
@@ -49,19 +48,30 @@ export default {
       let mousedown = false;
       let existingLines = this.$store.state.existingLines;
 
-
       function draw() {
+        // clearCanvas(canvas.width,canvas.height)
         ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
           ctx.save();
           ctx.beginPath();
-          ctx.moveTo(line.startX, line.startY);
-          ctx.lineTo(line.endX, line.endY);
-          ctx.rect(line.last_mouseX, line.last_mouseY, line.width, line.height);
+          ctx.moveTo(line.startX + mouseX, line.startY + mouseY);
+          ctx.lineTo(line.endX + mouseX, line.endY + mouseY);
+          ctx.rect(
+            line.last_mouseX + mouseX,
+            line.last_mouseY + mouseY,
+            line.width,
+            line.height,
+          );
           ctx.scale(line.scaleX, line.scaleY);
-          ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
+          ctx.arc(
+            line.centerX + mouseX / line.scaleX,
+            line.centerY + mouseY / line.scaleY,
+            1,
+            0,
+            2 * Math.PI,
+          );
           // Restore and draw
           ctx.restore();
           ctx.stroke();
@@ -75,19 +85,32 @@ export default {
       }
 
       canvas.onmousedown = function(e) {
-        last_mouseX = e.clientX - canvasx;
-        last_mouseY = e.clientY - canvasy;
+        for (let i = 0; i < existingLines.length; ++i) {
+          const line = existingLines[i];
+          line.last_mouseX -= mouseX;
+          line.last_mouseY -= mouseY;
+          line.startX -= mouseX;
+          line.startY -= mouseY;
+          line.endX -= mouseX;
+          line.endY -= mouseY;
+          line.centerX -= mouseX / line.scaleX;
+          line.centerY -= mouseY / line.scaleY;
+        }
         mousedown = true;
       };
 
       canvas.onmouseup = function(e) {
-
-        existingLines.push({
-          last_mouseX,
-          last_mouseY,
-          width,
-          height,
-        });
+        for (let i = 0; i < existingLines.length; ++i) {
+          const line = existingLines[i];
+          line.last_mouseX += mouseX;
+          line.last_mouseY += mouseY;
+          line.startX += mouseX;
+          line.startY += mouseY;
+          line.endX += mouseX;
+          line.endY += mouseY;
+          line.centerX += mouseX / line.scaleX;
+          line.centerY += mouseY / line.scaleY;
+        }
         mousedown = false;
       };
       canvas.onmouseout = function(e) {
@@ -97,14 +120,7 @@ export default {
         mouseX = e.clientX - canvasx;
         mouseY = e.clientY - canvasy;
         if (mousedown) {
-          width = mouseX - last_mouseX;
-          height = mouseY - last_mouseY;
           clearCanvas(canvas.width, canvas.height); // clear canvas
-          ctx.beginPath();
-
-          ctx.rect(last_mouseX, last_mouseY, width, height);
-
-          ctx.stroke();
           draw();
         }
       };
@@ -115,18 +131,4 @@ export default {
 </script>
 
 <style scoped>
-.tool {
-  margin: 2px 2px;
-  padding: 10px 5px;
-  height: 4vw;
-  width: 4vw;
-  background-color: grey;
-  box-shadow: 0px 0px 0px 0px rgba(255, 252, 80, 1);
-  font-size: 2vw;
-  color: white;
-}
-
-.tool:hover {
-  background-color: black;
-}
 </style>

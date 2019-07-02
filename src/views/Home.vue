@@ -40,40 +40,20 @@
           </ul>
         </div>
         <ul class="ul-tools">
-          <!--  <li id="tool-pen">
-            <i class="fas fa-pen tool pen-icon" id="pen"></i>
-          </li>-->
           <Pen :SelectedToolId="SelectedToolId"/>
-          <!--  <li id="tool-pencil-alt">
-            <i class="fas fa-pencil-alt tool pencil-alt-icon" id="pencil-alt"></i>
-          </li>-->
           <MirrorPen :SelectedToolId="SelectedToolId"/>
-          <!-- <li id="tool-fill-drip">
-            <i class="fas fa-fill-drip tool fill-drip-icon" id="fill-drip"></i>
-          </li>-->
           <Bucket/>
           <li id="tool-fill">
             <i class="fas fa-fill tool fill-icon" id="fill"></i>
           </li>
-          <!--  <li id="tool-eraser">
-            <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
-          </li>-->
           <EraserTool/>
-          <!-- <li id="tool-pencil-ruler">
-            <i class="fas fa-pencil-ruler tool pencil-ruler-icon" id="pencil-ruler"></i>
-          </li>-->
           <StrokeLine/>
-          <!--  <li id="tool-square">
-            <i class="far fa-square tool square-icon" id="square"></i>
-          </li>-->
           <Rectangle/>
-          <!-- <li id="tool-circle">
-            <i class="far fa-circle tool circle-icon" id="circle"></i>
-          </li>-->
           <CircleTool/>
-          <li id="tool-hand-paper">
+          <!-- <li id="tool-hand-paper">
             <i class="fas fa-hand-paper tool hand-paper-icon" id="hand-paper"></i>
-          </li>
+          </li> -->
+          <MoveTool/>
           <li id="tool-magic">
             <i class="fas fa-magic tool magic-icon" id="magic"></i>
           </li>
@@ -247,10 +227,12 @@ import ColorPicker from '../components/tools/ColorPicker';
 import Bucket from '../components/tools/Bucket';
 import CircleTool from '../components/tools/CircleTool';
 import Rectangle from '../components/tools/Rectangle';
+import MoveTool from '../components/tools/MoveTool';
 
 export default {
   name: 'home',
   components: {
+    MoveTool,
     EraserTool,
     Pen,
     GoogleDrive,
