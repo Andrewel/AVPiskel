@@ -50,9 +50,6 @@
           <StrokeLine/>
           <Rectangle/>
           <CircleTool/>
-          <!-- <li id="tool-hand-paper">
-            <i class="fas fa-hand-paper tool hand-paper-icon" id="hand-paper"></i>
-          </li> -->
           <MoveTool/>
           <li id="tool-magic">
             <i class="fas fa-magic tool magic-icon" id="magic"></i>
@@ -85,9 +82,16 @@
           </template>
           <v-card>
             <v-card-title class="headline grey lighten-2" primary-title>
-              Keyboard shortcuts</v-card-title>
+              Keyboard
+              shortcuts
+            </v-card-title>
             <span>
-              <input class="input-KeyPen" value="I" @keyup.enter="changeKeyPen()" style="width:1vw">
+              <input
+                class="input-KeyPen"
+                value="I"
+                @keyup.enter="changeKeyPen()"
+                style="width:1.2vw"
+              >
               <i class="fas fa-pen pen-icon"></i>
               Pen tool
             </span>
@@ -97,7 +101,7 @@
                 class="input-KeyVPen"
                 value="V"
                 @keyup.enter="changeKeyVPen()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="fas fa-pencil-alt pencil-alt-icon"></i>
               Mirror tool
@@ -108,7 +112,7 @@
                 class="input-KeyBucket"
                 value="B"
                 @keyup.enter="changeKeyBucket()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="fas fa-fill-drip fill-drip-icon"></i>
               Paint bucket tool
@@ -119,7 +123,7 @@
                 class="input-KeyEraser"
                 value="E"
                 @keyup.enter="changeKeyEraser()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="fas fa-eraser eraser-icon"></i>
               Eraser tool
@@ -130,7 +134,7 @@
                 class="input-KeyStroke"
                 value="L"
                 @keyup.enter="changeKeyStroke()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="fas fa-pencil-ruler pencil-ruler-icon"></i>
               Stroke tool
@@ -141,7 +145,7 @@
                 class="input-KeyRectangle"
                 value="R"
                 @keyup.enter="changeKeyRectangle()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="far fa-square square-icon"></i>
               Rectangle tool
@@ -152,7 +156,7 @@
                 class="input-KeyCircle"
                 value="C"
                 @keyup.enter="changeKeyCircle()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="far fa-circle circle-icon"></i>
               Circle tool
@@ -163,7 +167,7 @@
                 class="input-KeyPicker"
                 value="P"
                 @keyup.enter="changeKeyPicker()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="fas fa-eye-dropper eye-dropper-icon"></i>
               ColorPicker tool
@@ -171,10 +175,21 @@
             <br>
             <span>
               <input
+                class="input-KeyMove"
+                value="M"
+                @keyup.enter="changeKeyMove()"
+                style="width:1.2vw"
+              >
+              <i class="fas fa-hand-paper hand-paper-icon"></i>
+              Move tool
+            </span>
+            <br>
+            <span>
+              <input
                 class="input-KeyKeyboard"
                 value="X"
                 @keyup.enter="changeKeyKeyboard()"
-                style="width:1vw"
+                style="width:1.2vw"
               >
               <i class="fas fa-keyboard keyboard-icon"></i>
               Swap primary/secondary colors
@@ -250,16 +265,6 @@ export default {
   },
   data() {
     return {
-      KeyCode: {
-        KeyPen: 'P', // I
-        KeyVPen: 86, // V
-        KeyBucket: 66, // B
-        KeyKeyboard: 88, // X
-        KeyPicker: 80, // P
-        KeyEraser: 69, // E
-        KeyRectangle: 82, // R
-        KeyCircle: 67, // C
-      },
       dialog: false,
       SelectedToolId: 1,
       height: 700,
@@ -341,28 +346,51 @@ export default {
       ) {
         document.querySelector('.input-KeyPen').value = '';
         this.$store.state.KeyCode.KeyPen = '';
-      } else if (this.$store.state.KeyCode.KeyVPen === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyVPen === key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyVPen').value = '';
         this.$store.state.KeyCode.KeyVPen = '';
-      } else if (this.$store.state.KeyCode.KeyEraser === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyEraser === key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyEraser').value = '';
         this.$store.state.KeyCode.KeyEraser = '';
-      } else if (this.$store.state.KeyCode.KeyPicker === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyPicker === key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyPicker').value = '';
         this.$store.state.KeyCode.KeyPen = '';
-      } else if (this.$store.state.KeyCode.KeyRectangle === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyRectangle ===
+        key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyRectangle').value = '';
         this.$store.state.KeyCode.KeyRectangle = '';
-      } else if (this.$store.state.KeyCode.KeyCircle === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyCircle === key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyCircle').value = '';
         this.$store.state.KeyCode.KeyCircle = '';
-      } else if (this.$store.state.KeyCode.KeyStroke === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyStroke === key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyStroke').value = '';
         this.$store.state.KeyCode.KeyStroke = '';
-      } else if (this.$store.state.KeyCode.KeyBucket === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyBucket === key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyBucket').value = '';
         this.$store.state.KeyCode.KeyBucket = '';
-      } else if (this.$store.state.KeyCode.KeyKeyboard === key.toUpperCase().charCodeAt(0)) {
+      } else if (
+        this.$store.state.KeyCode.KeyBucket === key.toUpperCase().charCodeAt(0)
+      ) {
+        document.querySelector('.input-KeyMove').value = '';
+        this.$store.state.KeyCode.KeyMove = '';
+      } else if (
+        this.$store.state.KeyCode.KeyKeyboard ===
+        key.toUpperCase().charCodeAt(0)
+      ) {
         document.querySelector('.input-KeyKeyboard').value = '';
         this.$store.state.KeyCode.KeyKeyboard = '';
       }
@@ -411,6 +439,11 @@ export default {
       let key = document.querySelector('.input-KeyKeyboard').value;
       this.changeKeyDuplicates(key);
       this.$store.state.KeyCode.KeyKeyboard = key.toUpperCase().charCodeAt(0);
+    },
+    changeKeyMove() {
+      let key = document.querySelector('.input-KeyMove').value;
+      this.changeKeyDuplicates(key);
+      this.$store.state.KeyCode.KeyMove = key.toUpperCase().charCodeAt(0);
     },
     changeTool(tool) {
       this.SelectedToolId = tool;

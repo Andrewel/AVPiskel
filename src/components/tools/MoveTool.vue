@@ -35,7 +35,6 @@ export default {
       const ctx = canvas.getContext('2d');
       ctx.strokeStyle = document.getElementById('palette1').value;
       ctx.lineWidth = this.$store.state.BrushSize;
-      // Variables
       const canvasx = $(canvas).offset().left;
       const canvasy = $(canvas).offset().top;
       let last_mouseX = 0;
@@ -49,7 +48,6 @@ export default {
       let existingLines = this.$store.state.existingLines;
 
       function draw() {
-        // clearCanvas(canvas.width,canvas.height)
         ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
