@@ -48,20 +48,26 @@ export default {
       let existingLines = this.$store.state.existingLines;
 
       function draw() {
-        ctx.beginPath();
+        //      ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
-          ctx.save();
+
           ctx.beginPath();
+          ctx.strokeStyle = line.colorStroke;
           ctx.moveTo(line.startX + mouseX, line.startY + mouseY);
           ctx.lineTo(line.endX + mouseX, line.endY + mouseY);
+          ctx.stroke();
+          ctx.strokeStyle = line.colorRectangle;
           ctx.rect(
             line.last_mouseX + mouseX,
             line.last_mouseY + mouseY,
             line.width,
             line.height,
           );
+          ctx.stroke();
+          ctx.strokeStyle = line.colorCircle;
+          ctx.save();
           ctx.scale(line.scaleX, line.scaleY);
           ctx.arc(
             line.centerX + mouseX / line.scaleX,
@@ -75,7 +81,7 @@ export default {
           ctx.stroke();
         }
 
-        ctx.stroke();
+        //   ctx.stroke();
       }
 
       function clearCanvas(width, height) {

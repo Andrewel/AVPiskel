@@ -23,7 +23,6 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyStroke)) {
         this.StrokeLine();
       }
@@ -47,16 +46,22 @@ export default {
       const existingLines = this.$store.state.existingLines;
 
       function draw() {
-        ctx.beginPath();
+        //   ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
 
-          ctx.save();
           ctx.beginPath();
+          ctx.strokeStyle = line.colorStroke;
           ctx.moveTo(line.startX, line.startY);
           ctx.lineTo(line.endX, line.endY);
+          ctx.stroke();
+          // ctx.beginPath();
+          ctx.strokeStyle = line.colorRectangle;
           ctx.rect(line.last_mouseX, line.last_mouseY, line.width, line.height);
+          ctx.stroke();
+          ctx.strokeStyle = line.colorCircle;
+          ctx.save();
           ctx.scale(line.scaleX, line.scaleY);
           ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
           // Restore and draw
@@ -64,8 +69,7 @@ export default {
           ctx.stroke();
         }
 
-        ctx.stroke();
-
+        //      ctx.stroke();
       }
 
       function clearCanvas(width, height) {
@@ -79,7 +83,6 @@ export default {
 
           isDrawing = true;
         }
-
       }
 
       function onmouseup(e) {
@@ -89,11 +92,13 @@ export default {
             startY,
             endX: mouseX,
             endY: mouseY,
+            colorStroke: (ctx.strokeStyle = document.getElementById(
+              'palette1',
+            ).value),
           });
 
           isDrawing = false;
         }
-
       }
 
       function onmousemove(e) {
@@ -102,6 +107,7 @@ export default {
 
         if (isDrawing) {
           clearCanvas(canvas.width, canvas.height);
+          ctx.strokeStyle = document.getElementById('palette1').value;
           ctx.beginPath();
           ctx.moveTo(startX, startY);
           ctx.lineTo(mouseX, mouseY);

@@ -53,16 +53,22 @@ export default {
 
 
       function draw() {
-        ctx.beginPath();
+    //    ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
-          ctx.strokeStyle = line.colorRectangle;
-          ctx.save();
+
+
           ctx.beginPath();
+          ctx.strokeStyle = line.colorStroke;
           ctx.moveTo(line.startX, line.startY);
           ctx.lineTo(line.endX, line.endY);
+          ctx.stroke();
+          ctx.strokeStyle = line.colorRectangle;
           ctx.rect(line.last_mouseX, line.last_mouseY, line.width, line.height);
+          ctx.stroke();
+          ctx.strokeStyle = line.colorCircle
+          ctx.save();
           ctx.scale(line.scaleX, line.scaleY);
           ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
           // Restore and draw
@@ -71,7 +77,7 @@ export default {
           ctx.stroke();
         }
 
-        ctx.stroke();
+   //     ctx.stroke();
       }
       function clearCanvas(width, height) {
         ctx.clearRect(0, 0, width, height);
