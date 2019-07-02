@@ -446,7 +446,7 @@ export default {
 .logout {
   top: 100%;
 }
-//
+
 body {
   font-family: 'Roboto', sans-serif;
   height: 100vh;

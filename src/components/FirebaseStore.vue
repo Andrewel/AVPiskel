@@ -1,9 +1,6 @@
 
 <template>
   <li id="tool-firebase-firestore">
-    <!--  <v-btn class="upload_button" @click.native="selectFile" v-if="!uploadEnd && !uploading">
-       <v-icon right aria-hidden="true">add_a_photo</v-icon>
-    </v-btn>-->
     <i
       class="fas fa-cloud-upload-alt tool cloud-upload-alt-icon upload_button"
       id="cloud-upload-alt"

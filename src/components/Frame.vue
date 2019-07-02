@@ -1,15 +1,6 @@
 <template>
   <section class="frames-tools-wrapper">
-    <ul id="frame-list" class="frame-list">
-     <!--  <li class="frame" draggable="true">
-       <span>A</span>
-      </li>
-      <li class="frame" draggable="true">
-        <span>B</span>
-      </li> -->
-    </ul>
-
-    <!-- <ul id="frame-list" class="frame-list"></ul> -->
+    <ul id="frame-list" class="frame-list"></ul>
     <button id="add-frame-button" class="add-frame-button" @click="DragFunc()">
       <i class="fas fa-plus" style="color: white;font-size:2rem;margin-right: 10px"></i>Add new
       <br>frame
@@ -31,8 +22,8 @@ export default {
     return {};
   },
   mounted() {
-    this.DragFunc();
     this.Frame();
+    this.DragFunc();
   },
   methods: {
     DragFunc() {
@@ -107,6 +98,7 @@ export default {
       [].forEach.call(cols, addDnDHandlers);
     },
     Frame() {
+      this.DragFunc()
       const addFrameButton = document.querySelector('#add-frame-button');
       const framesList = document.querySelector('#frame-list');
       const mainCanvas = document.querySelector('#canvas');
@@ -129,7 +121,7 @@ export default {
         for (let i = 0; i < frames.length; i += 1) {
           frames[i].addEventListener('click', frameChoose, false);
         }
-        clearCanvas(mainCanvas.width,mainCanvas.height);
+        clearCanvas(mainCanvas.width, mainCanvas.height);
       };
       const frameChoose = function(e) {
         const frames = document.querySelectorAll(`.${e.target.className}`);
@@ -203,12 +195,11 @@ export default {
         toggleFullScreen();
       });
 
-      function clearCanvas(width,height) {
+      function clearCanvas(width, height) {
         canvas.context.clearRect(0, 0, width, height);
       }
       function createFrame(frameIndex, img) {
         const listItem = document.createElement('li');
-        /* listItem.className = 'frame'; */
         listItem.setAttribute('draggable', true);
         framesList.appendChild(listItem);
         const frameDiv = document.createElement('div');
@@ -262,6 +253,7 @@ export default {
         }
       }
       animate();
+      this.DragFunc()
     },
   },
 };
@@ -359,61 +351,14 @@ export default {
 .add-frame-button:hover {
   border-color: #fffc50;
 }
-//
+
 [draggable] {
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
 
-/* #columns {
-  position: relative;
-  list-style-type: none;
-  z-index: 3;
-}
-
-.column {
-  width: 162px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  text-align: center;
-  cursor: move;
-}
-
-.column span {
-  height: 20px;
-  width: 150px;
-  color: black;
-  background-color: #ccc;
-  padding: 5px;
-  border-bottom: 1px solid #ddd;
-  border-radius: 10px;
-  border: 2px solid #666666;
-}
-
-.column.dragElem {
-  //opacity: 0.4;
-}
-.column.over {
-  //border: 2px dashed #000;
-  border-top: 2px solid blue;
-} */
-/* #frame-list {
-  position: relative;
-  list-style-type: none;
-  z-index: 3;
-} */
-/*
-.frame {
-  width: 162px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  text-align: center;
-  cursor: move;
-}
-*/
 .frame.over {
-  //border: 2px dashed #000;
   border-top: 20px solid blue;
 }
 </style>
