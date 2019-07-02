@@ -272,6 +272,9 @@ export default {
     };
   },
   created() {
+    if(true){
+
+    }
     document.addEventListener('keyup', e => {
       //  console.log(e.KeyCode)
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyKeyboard)) {
@@ -280,6 +283,11 @@ export default {
           'palette2',
         ).value;
         document.getElementById('palette2').value = value;
+        this.$store.state.SelectedTool = 0;
+        document.querySelector('#canvas').onmousedown = null;
+        document.querySelector('#canvas').onmouseup = null;
+        document.querySelector('#canvas').onmouseout = null;
+        document.querySelector('#canvas').onmousemove = null;
       }
     });
   },

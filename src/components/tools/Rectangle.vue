@@ -23,7 +23,6 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyRectangle)) {
         this.Rectangle();
       }
@@ -49,12 +48,13 @@ export default {
       let mousedown = false;
       let existingLines = this.$store.state.existingLines;
 
-
       function draw() {
-        ctx.beginPath();
+        //       ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
+          ctx.strokeStyle = line.colorRectangle;
+          console.log(ctx.strokeStyle);
           ctx.save();
           ctx.beginPath();
           ctx.moveTo(line.startX, line.startY);
@@ -66,8 +66,7 @@ export default {
           ctx.restore();
           ctx.stroke();
         }
-
-        ctx.stroke();
+        // ctx.stroke();
       }
 
       function clearCanvas(width, height) {
@@ -81,12 +80,12 @@ export default {
       };
 
       canvas.onmouseup = function(e) {
-
         existingLines.push({
           last_mouseX,
           last_mouseY,
           width,
           height,
+          colorRectangle: document.getElementById('palette1').value,
         });
         mousedown = false;
       };

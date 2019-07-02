@@ -66,6 +66,7 @@ export default {
           ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
           // Restore and draw
           ctx.restore();
+         // ctx.strokeStyle
           ctx.stroke();
         }
 

@@ -1,13 +1,13 @@
 <template>
   <li id="tool-google-drive">
-    <file-picker-button :config="gConfig" @picked="showDetails">
+    <file-picker-button :config="gConfig">
       <i class="fab fa-google-drive tool google-drive-icon" id="google-drive"></i>
     </file-picker-button>
   </li>
 </template>
 
 <script>
-import FilePickerButton from 'vue-google-picker';
+import FilePickerButton from './FilePickerButton';
 
 export default {
   /* eslint-disable */
@@ -29,11 +29,6 @@ export default {
     };
   },
   methods: {
-    showDetails(data) {
-      if (data.picked === 'picked') {
-        console.log(data.docs);
-      }
-    },
   },
 };
 </script>
