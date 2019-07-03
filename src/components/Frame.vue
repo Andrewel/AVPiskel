@@ -1,7 +1,7 @@
 <template>
   <section class="frames-tools-wrapper">
     <ul id="frame-list" class="frame-list"></ul>
-    <button id="add-frame-button" class="add-frame-button" @click="DragFunc()">
+    <button id="add-frame-button" class="add-frame-button">
       <i class="fas fa-plus" style="color: white;font-size:2rem;margin-right: 10px"></i>Add new
       <br>frame
     </button>
@@ -25,77 +25,6 @@ export default {
     this.Frame();
   },
   methods: {
-    DragFunc() {
-      let dragSrcEl = null;
-
-      function handleDragStart(e) {
-        // Target (this) element is the source node.
-        dragSrcEl = this;
-
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', this.outerHTML);
-
-        this.classList.add('dragElem');
-      }
-      function handleDragOver(e) {
-        if (e.preventDefault) {
-          e.preventDefault(); // Necessary. Allows us to drop.
-        }
-        this.classList.add('over');
-
-        e.dataTransfer.dropEffect = 'move'; // See the section on the DataTransfer object.
-
-        return false;
-      }
-
-      function handleDragEnter(e) {
-        // this / e.target is the current hover target.
-      }
-
-      function handleDragLeave(e) {
-        this.classList.remove('over'); // this / e.target is previous target element.
-      }
-
-      function handleDrop(e) {
-        // this/e.target is current target element.
-
-        if (e.stopPropagation) {
-          e.stopPropagation(); // Stops some browsers from redirecting.
-        }
-
-        // Don't do anything if dropping the same column we're dragging.
-        if (dragSrcEl != this) {
-          this.parentNode.removeChild(dragSrcEl);
-          let dropHTML = e.dataTransfer.getData('text/html');
-          this.insertAdjacentHTML('beforebegin', dropHTML);
-          let dropElem = this.previousSibling;
-          addDnDHandlers(dropElem);
-        }
-        this.classList.remove('over');
-        return false;
-      }
-
-      function handleDragEnd(e) {
-        // this/e.target is the source node.
-        this.classList.remove('over');
-
-        /*[].forEach.call(cols, function (col) {
-    col.classList.remove('over');
-  });*/
-      }
-
-      function addDnDHandlers(elem) {
-        elem.addEventListener('dragstart', handleDragStart, false);
-        elem.addEventListener('dragenter', handleDragEnter, false);
-        elem.addEventListener('dragover', handleDragOver, false);
-        elem.addEventListener('dragleave', handleDragLeave, false);
-        elem.addEventListener('drop', handleDrop, false);
-        elem.addEventListener('dragend', handleDragEnd, false);
-      }
-
-      let cols = document.querySelectorAll('#frame-list li');
-      [].forEach.call(cols, addDnDHandlers);
-    },
     Frame() {
       const addFrameButton = document.querySelector('#add-frame-button');
       const framesList = document.querySelector('#frame-list');
@@ -284,7 +213,7 @@ export default {
         const moveFrameButton = document.createElement('div');
         moveFrameButton.className = 'frame-detail frame-move';
         moveFrameButton.innerHTML = '<i class="fas fa-arrows-alt">';
-        moveFrameButton.addEventListener('click', () => {
+        moveFrameButton.addEventListener('mousedown', () => {
           DragFrame(listItem);
         });
         frameDiv.appendChild(moveFrameButton);

@@ -49,11 +49,6 @@ export default {
       context.lineWidth = this.$store.state.BrushSize;
       context.lineCap = 'round';
 
-      /* canvas.onmousemove = null;
-      canvas.onmousedown = null;
-      canvas.onmouseup = null;
-      canvas.onmouseout = null; */
-
       function recordPointerLocation(e) {
         prevX = currX;
         prevY = currY;
@@ -161,5 +156,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

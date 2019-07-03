@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     BucketAll() {
-      this.$store.state.SelectedTool = 3;
+      this.$store.state.SelectedTool = 4;
       let canvas = document.getElementById('canvas');
       let context = canvas.getContext('2d');
       let $canvas = $('#canvas');
@@ -191,24 +191,6 @@ export default {
         context.drawImage(img, 0, 0);
       }
 
-      // create a random color object {red,green,blue}
-      function randomColorRGB() {
-        let hex = Math.floor(Math.random() * 16777215).toString(16);
-        //let r = parseInt(hex.substring(0, 2), 16);
-
-        let r = 255;
-        let g = 255;
-        let b = 155;
-
-        //let g = parseInt(hex.substring(2, 4), 16);
-        //let b = parseInt(hex.substring(4, 6), 16);
-        return {
-          r: r,
-          g: g,
-          b: b,
-        };
-      }
-
       // draw the image to the canvas and get its pixel array
       // listen for mouse clicks and do floodfill when clicked
       function start() {
@@ -222,8 +204,6 @@ export default {
           // Mouse down location
           let mouseX = parseInt(e.clientX - offsetX);
           let mouseY = parseInt(e.clientY - offsetY);
-          // set a new random fillColor
-          fillColor = randomColorRGB();
           // floodfill
           paintAt(mouseX, mouseY);
         });

@@ -48,7 +48,6 @@ export default {
       let existingLines = this.$store.state.existingLines;
 
       function draw() {
-        //      ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
@@ -76,12 +75,9 @@ export default {
             0,
             2 * Math.PI,
           );
-          // Restore and draw
           ctx.restore();
           ctx.stroke();
         }
-
-        //   ctx.stroke();
       }
 
       function clearCanvas(width, height) {
@@ -124,7 +120,7 @@ export default {
         mouseX = e.clientX - canvasx;
         mouseY = e.clientY - canvasy;
         if (mousedown) {
-          clearCanvas(canvas.width, canvas.height); // clear canvas
+          clearCanvas(canvas.width, canvas.height);
           draw();
         }
       };

@@ -24,7 +24,6 @@ export default {
     download() {
       const link = document.createElement('a');
       link.download = `${this.outputName}.png`;
-      // link.href = this.$refs.canvas.toDataURL();
       link.href = document.querySelector('#canvas').toDataURL();
       link.click();
     },

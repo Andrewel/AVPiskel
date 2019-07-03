@@ -40,8 +40,6 @@ export default {
 .circle-compress {
   position:absolute;
   left: 15.5vw;
-  /* padding: relative;
-  margin: auto 90%; */
   color: white;
   font-size: 20px;
   text-align: left;

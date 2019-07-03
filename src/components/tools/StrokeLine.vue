@@ -46,7 +46,6 @@ export default {
       const existingLines = this.$store.state.existingLines;
 
       function draw() {
-        //   ctx.beginPath();
 
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
@@ -56,7 +55,6 @@ export default {
           ctx.moveTo(line.startX, line.startY);
           ctx.lineTo(line.endX, line.endY);
           ctx.stroke();
-          // ctx.beginPath();
           ctx.strokeStyle = line.colorRectangle;
           ctx.rect(line.last_mouseX, line.last_mouseY, line.width, line.height);
           ctx.stroke();
@@ -64,12 +62,9 @@ export default {
           ctx.save();
           ctx.scale(line.scaleX, line.scaleY);
           ctx.arc(line.centerX, line.centerY, 1, 0, 2 * Math.PI);
-          // Restore and draw
           ctx.restore();
           ctx.stroke();
         }
-
-        //      ctx.stroke();
       }
 
       function clearCanvas(width, height) {
@@ -127,18 +122,4 @@ export default {
 </script>
 
 <style scoped>
-.tool {
-  margin: 2px 2px;
-  padding: 10px 5px;
-  height: 4vw;
-  width: 4vw;
-  background-color: grey;
-  box-shadow: 0px 0px 0px 0px rgba(255, 252, 80, 1);
-  font-size: 2vw;
-  color: white;
-}
-
-.tool:hover {
-  background-color: black;
-}
 </style>
