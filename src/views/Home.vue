@@ -23,7 +23,7 @@
     </div>
     <section class="center-section-wrapper">
       <section class="section-left-tools">
-        <div class="pen-size-container size-picker-container">
+        <div class="pen-size-container size-picker-container tooltip">
           <ul class="ul-pen-size">
             <li :class="{ active: this.$store.state.BrushSize === 1 }" @click="ChangeBrushSize(1)">
               <i class="fas fa-square pen-size-option1 size-picker-opt" id="pen-size-option1"></i>
@@ -38,6 +38,10 @@
               <i class="fas fa-square pen-size-option4 size-picker-opt" id="pen-size-option4"></i>
             </li>
           </ul>
+          <span class="tooltiptext">
+            Pen size
+            <br>from 1 to 4 pixels
+          </span>
         </div>
         <ul class="ul-tools">
           <Pen :SelectedToolId="SelectedToolId"/>
@@ -205,6 +209,36 @@ export default {
       },
       false,
     );
+    document.querySelector('#palette1').addEventListener(
+      'input',
+      function(e) {
+        localStorage.setItem(
+          `palette1`,
+          `${document.querySelector('#palette1').value}`,
+        );
+        localStorage.setItem(
+          `palette2`,
+          `${document.querySelector('#palette2').value}`,
+        );
+      },
+      false,
+    );
+    if (localStorage.getItem(`palette1`) !== null) {
+      document.querySelector('#palette1').value = localStorage.getItem(
+        'palette1',
+      );
+      document.querySelector('#palette2').value = localStorage.getItem(
+        'palette2',
+      );
+    }
+    if (localStorage.getItem(`BrushSize`) !== null) {
+      this.$store.state.BrushSize = parseInt(localStorage.getItem('BrushSize'));
+      this.ChangeBrushSize(this.$store.state.BrushSize);
+      console.log(
+        typeof this.$store.state.BrushSize,
+        this.$store.state.BrushSize,
+      );
+    }
   },
   methods: {
     logout() {
@@ -235,6 +269,7 @@ export default {
       document.querySelector('#canvas').onmouseup = null;
       document.querySelector('#canvas').onmouseout = null;
       document.querySelector('#canvas').onmousemove = null;
+      localStorage.setItem(`BrushSize`, `${size}`);
     },
   },
 };
@@ -513,10 +548,48 @@ span {
 .ul-download {
   padding-left: 15.7vw;
 }
-.v-tooltip--right {
+.v-tooltip {
   margin: 0;
 }
-.v-tooltip--right span {
+.v-tooltip span {
   color: white;
+}
+.tooltip {
+  position: relative;
+  margin: 0;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 </style>
