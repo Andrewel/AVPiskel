@@ -37,8 +37,8 @@ npm test
 | Jun 11 | Jun 12 | 5h | Google Drive, Firebase Auth, Firebase Firestore |
 | Jun 11 | Jun 12 | 5h | layers implementation |
 | Jun 11 | Jun 12 | 5h | layers implementation |
-| Jun 11 | Jun 12 | 5h | keyboardshotcuts |
-| July 1 | July 2 | 10h | bug fixing
+| Jun 11 | Jun 12 | 5h | KeyboardShotCuts |
+| July 1 | July 3 | 10h | bug fixing
 
 
 Total: 63h

@@ -94,9 +94,10 @@ export default {
       if (!this.isDrawing) return;
 
       if (this.tools[this.selectedToolIdx].name === 'Eraser') {
-        this.canvasContext.globalCompositeOperation = 'lighten';
+        this.canvasContext.globalCompositeOperation = 'destination-out';
       } else if (this.tools[this.selectedToolIdx].name === 'Pencil') {
         this.canvasContext.globalCompositeOperation = 'source-over';
+
       }
 
       this.canvasContext.beginPath();
