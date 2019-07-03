@@ -4,7 +4,12 @@
     :class="{ active: this.$store.state.SelectedTool === 2 }"
     @click="MirrorPen()"
   >
-    <i class="fas fa-pencil-alt tool pencil-alt-icon" id="pencil-alt"></i>
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-pencil-alt tool pencil-alt-icon" id="pencil-alt"></i>
+      </template>
+      <span>Vertical Pen tool ({{this.$store.state.KeyCode.KeyVPen | capitalize}})</span>
+    </v-tooltip>
   </li>
 </template>
 
@@ -26,6 +31,11 @@ export default {
     return {
       isDrawing: true,
     };
+  },
+  filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
+    },
   },
   created() {
     document.addEventListener('keyup', e => {

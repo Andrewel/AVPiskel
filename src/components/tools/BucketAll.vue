@@ -1,6 +1,12 @@
 <template>
   <li id="tool-fill-drip" @click="BucketAll()">
-    <i class="fas fa-fill-drip tool fill-drip-icon" id="fill-drip"></i>
+     <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-fill-drip tool fill-drip-icon" id="fill-drip"></i>
+      </template>
+      <span>Bucket tool</span>
+    </v-tooltip>
+
   </li>
 </template>
 
@@ -16,6 +22,11 @@ export default {
   },
   data() {
     return {};
+  },
+   filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
+    },
   },
   methods: {
     BucketAll() {

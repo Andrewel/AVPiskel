@@ -4,7 +4,12 @@
     :class="{ active: this.$store.state.SelectedTool === 7 }"
     @click="Rectangle()"
   >
-    <i class="far fa-square tool square-icon" id="square"></i>
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="far fa-square tool square-icon" id="square"></i>
+      </template>
+      <span>Rectangle tool ({{this.$store.state.KeyCode.KeyRectangle | capitalize}})</span>
+    </v-tooltip>
   </li>
 </template>
 
@@ -20,6 +25,11 @@ export default {
   },
   data() {
     return {};
+  },
+  filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
+    },
   },
   created() {
     document.addEventListener('keyup', e => {
@@ -48,7 +58,6 @@ export default {
       let existingLines = this.$store.state.existingLines;
 
       function draw() {
-
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
 
@@ -99,7 +108,7 @@ export default {
           width = mouseX - last_mouseX;
           height = mouseY - last_mouseY;
           clearCanvas(canvas.width, canvas.height);
-          ctx.strokeStyle = document.getElementById('palette1').value
+          ctx.strokeStyle = document.getElementById('palette1').value;
           ctx.beginPath();
 
           ctx.rect(last_mouseX, last_mouseY, width, height);

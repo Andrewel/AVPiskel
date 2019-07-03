@@ -1,6 +1,11 @@
 <template>
   <li id="tool-pen" :class="{ active: this.$store.state.SelectedTool === 1 }" @click="bindEvents()">
-    <i class="fas fa-pen tool pen-icon" id="pen"></i>
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-pen tool pen-icon" id="pen"></i>
+      </template>
+      <span>Pen tool ({{this.$store.state.KeyCode.KeyPen | capitalize}})</span>
+    </v-tooltip>
   </li>
 </template>
 
@@ -20,6 +25,11 @@ export default {
     SelectedToolId: {
       type: Number,
       default: 0,
+    },
+  },
+  filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
     },
   },
   data() {
@@ -46,7 +56,7 @@ export default {
         this.bindEvents();
       }
     });
-    this.bindEvents()
+    this.bindEvents();
   },
   methods: {
     setCanvas() {
@@ -55,8 +65,8 @@ export default {
       this.canvasContext.lineCap = 'round';
       this.canvasContext.lineWidth = this.$store.state.BrushSize;
       this.canvasContext.strokeStyle = document.getElementById(
-          'palette1',
-        ).value;
+        'palette1',
+      ).value;
 
       this.cursorContext = document.querySelector('#cursor').getContext('2d');
     },

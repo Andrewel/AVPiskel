@@ -4,7 +4,13 @@
     :class="{ active: this.$store.state.SelectedTool === 15 }"
     @click="ColorPicker2()"
   >
-    <i class="fas fa-eye-dropper tool eye-dropper-icon" id="eye-dropper"></i>
+   <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-eye-dropper tool eye-dropper-icon" id="eye-dropper"></i>
+      </template>
+      <span>ColorPicker tool ({{this.$store.state.KeyCode.KeyPicker | capitalize}})</span>
+    </v-tooltip>
+
   </li>
 </template>
 
@@ -16,6 +22,11 @@ export default {
     isActive: {
       type: Boolean,
       default: true,
+    },
+  },
+   filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
     },
   },
   data() {

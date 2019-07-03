@@ -4,7 +4,12 @@
     :class="{ active: this.$store.state.SelectedTool === 9 }"
     @click="MoveTool()"
   >
-    <i class="fas fa-hand-paper tool hand-paper-icon" id="hand-paper"></i>
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-hand-paper tool hand-paper-icon" id="hand-paper"></i>
+      </template>
+      <span>Move tool ({{this.$store.state.KeyCode.KeyMove | capitalize}})</span>
+    </v-tooltip>
   </li>
 </template>
 
@@ -20,6 +25,11 @@ export default {
   },
   data() {
     return {};
+  },
+  filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
+    },
   },
   created() {
     document.addEventListener('keyup', e => {
@@ -48,7 +58,6 @@ export default {
       let existingLines = this.$store.state.existingLines;
 
       function draw() {
-
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
 

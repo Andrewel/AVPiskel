@@ -1,11 +1,16 @@
 <template>
-    <li
-      id="tool-eraser"
-      :class="{ active: this.$store.state.SelectedTool === 5 }"
-      @click="bindEvents()"
-    >
-      <i class="fas fa-eraser tool eraser-icon" id="eraser"></i>
-    </li>
+  <li
+    id="tool-eraser"
+    :class="{ active: this.$store.state.SelectedTool === 5 }"
+    @click="bindEvents()"
+  >
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-eraser tool eraser-icon" id="eraser"></i>
+      </template>
+      <span>Eraser tool ({{this.$store.state.KeyCode.KeyEraser | capitalize}})</span>
+    </v-tooltip>
+  </li>
 </template>
 
 <script>
@@ -24,6 +29,11 @@ export default {
     SelectedToolId: {
       type: Number,
       default: 0,
+    },
+  },
+  filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
     },
   },
   data() {
@@ -46,7 +56,6 @@ export default {
   },
   created() {
     document.addEventListener('keyup', e => {
-
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyEraser)) {
         this.bindEvents();
       }

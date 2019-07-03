@@ -26,6 +26,11 @@ export default {
       default: 'canvas',
     },
   },
+  filters: {
+    capitalize(value) {
+      return String.fromCharCode(value);
+    },
+  },
   data() {
     return {
       canvasContext: null,

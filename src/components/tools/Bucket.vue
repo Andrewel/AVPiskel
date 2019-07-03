@@ -4,7 +4,12 @@
     :class="{ active: this.$store.state.SelectedTool === 3 }"
     @click="Bucket()"
   >
-    <i class="fas fa-fill-drip tool fill-drip-icon" id="fill-drip"></i>
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-fill-drip tool fill-drip-icon" id="fill-drip"></i>
+      </template>
+      <span>Bucket tool ({{this.$store.state.KeyCode.KeyBucket | capitalize}})</span>
+    </v-tooltip>
   </li>
 </template>
 
@@ -16,6 +21,11 @@ export default {
     isActive: {
       type: Boolean,
       default: true,
+    },
+  },
+  filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
     },
   },
   data() {

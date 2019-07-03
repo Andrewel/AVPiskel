@@ -4,7 +4,12 @@
     :class="{ active: this.$store.state.SelectedTool === 6 }"
     @click="StrokeLine()"
   >
-    <i class="fas fa-pencil-ruler tool pencil-ruler-icon" id="pencil-ruler"></i>
+    <v-tooltip right>
+      <template v-slot:activator="{ on }">
+        <i v-on="on" class="fas fa-pencil-ruler tool pencil-ruler-icon" id="pencil-ruler"></i>
+      </template>
+      <span>Stroke tool ({{this.$store.state.KeyCode.KeyStroke | capitalize}})</span>
+    </v-tooltip>
   </li>
 </template>
 
@@ -20,6 +25,11 @@ export default {
   },
   data() {
     return {};
+  },
+  filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
+    },
   },
   created() {
     document.addEventListener('keyup', e => {
@@ -46,7 +56,6 @@ export default {
       const existingLines = this.$store.state.existingLines;
 
       function draw() {
-
         for (let i = 0; i < existingLines.length; ++i) {
           const line = existingLines[i];
 

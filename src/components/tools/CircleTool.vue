@@ -4,7 +4,13 @@
     :class="{ active: this.$store.state.SelectedTool === 8 }"
     @click="CircleTool()"
   >
-    <i class="far fa-circle tool circle-icon" id="circle"></i>
+   <v-tooltip right>
+      <template v-slot:activator="{ on }">
+         <i v-on="on" class="far fa-circle tool circle-icon" id="circle"></i>
+      </template>
+      <span>Circle tool ({{this.$store.state.KeyCode.KeyCircle | capitalize}})</span>
+    </v-tooltip>
+
   </li>
 </template>
 
@@ -16,6 +22,11 @@ export default {
     isActive: {
       type: Boolean,
       default: true,
+    },
+  },
+   filters: {
+    capitalize: function(value) {
+      return String.fromCharCode(value);
     },
   },
   data() {
