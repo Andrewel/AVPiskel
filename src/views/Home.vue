@@ -76,7 +76,7 @@
           @click="InputColor()"
         >
         <input type="color" id="palette2" value="#ff0000" style="width:4vw;height: 4vw">
-        <v-dialog style="text-align: left" v-model="dialog" width="500">
+       <!--  <v-dialog style="text-align: left" v-model="dialog" width="500">
           <template v-slot:activator="{ on }">
             <i v-on="on" class="fas fa-keyboard tool keyboard-icon" id="keyboard"></i>
           </template>
@@ -202,7 +202,8 @@
               <v-btn color="primary" flat @click="dialog = false">Accept</v-btn>
             </v-card-actions>
           </v-card>
-        </v-dialog>
+        </v-dialog> -->
+        <Keyboard/>
       </section>
       <Frame/>
       <div class="main-canvas-wrapper">
@@ -243,10 +244,12 @@ import Bucket from '../components/tools/Bucket';
 import CircleTool from '../components/tools/CircleTool';
 import Rectangle from '../components/tools/Rectangle';
 import MoveTool from '../components/tools/MoveTool';
+import Keyboard from '../components/tools/Keyboard';
 
 export default {
   name: 'home',
   components: {
+    Keyboard,
     MoveTool,
     EraserTool,
     Pen,
