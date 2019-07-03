@@ -100,9 +100,6 @@
       <Frame/>
       <div class="main-canvas-wrapper">
         <CanvasDraw :width="width" :height="height"/>
-        <!-- <div class="main-canvas-wrapper">
-          <canvas id="canvas" class="main-canvas" width="700" height="700"></canvas>
-        </div>-->
       </div>
       <section class="canvas-tools-wrapper">
         <Animation/>
@@ -167,24 +164,7 @@ export default {
     };
   },
   created() {
-    /*  if (localStorage.getItem(`CurrentColor`) !== null) {
-      document.querySelector(
-        '#CurrentColor',
-      ).style.backgroundColor = localStorage.getItem('CurrentColor');
-      document.querySelector(
-        '#prev',
-      ).style.backgroundColor = localStorage.getItem('PrevColor');
-    }
-    if (localStorage.getItem(`PaletteIcon`) !== null) {
-      document.querySelector('#iconPalette').style.color = localStorage.getItem(
-        `PaletteIcon`,
-      );
-      document.querySelector('#palette').value = localStorage.getItem(
-        `PaletteIcon`,
-      );
-    } */
     document.addEventListener('keyup', e => {
-      //  console.log(e.KeyCode)
       if (e.keyCode === parseInt(this.$store.state.KeyCode.KeyKeyboard)) {
         let value = document.getElementById('palette1').value;
         document.getElementById('palette1').value = document.getElementById(
