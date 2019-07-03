@@ -234,10 +234,6 @@ export default {
     if (localStorage.getItem(`BrushSize`) !== null) {
       this.$store.state.BrushSize = parseInt(localStorage.getItem('BrushSize'));
       this.ChangeBrushSize(this.$store.state.BrushSize);
-      console.log(
-        typeof this.$store.state.BrushSize,
-        this.$store.state.BrushSize,
-      );
     }
   },
   methods: {
