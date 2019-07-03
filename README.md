@@ -1,6 +1,6 @@
 # test-project
 
-> PISKEL project
+> A Vue.js PISKEL project
 
 ## Build Setup
 
